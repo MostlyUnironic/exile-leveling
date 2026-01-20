@@ -5,7 +5,7 @@ import { Fragment } from "./Fragment";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import React, { useState, useEffect } from "react";
-import { BiInfoCircle, BiSolidInfoCircle } from "react-icons/bi";
+import { BiImage, BiInfoCircle, BiSolidImage, BiSolidInfoCircle } from "react-icons/bi";
 import { useRecoilValue } from "recoil";
 
 interface StepProps {
@@ -56,6 +56,26 @@ export function FragmentStep({ step, isCompleted = false }: StepProps) {
             <BiInfoCircle className={classNames("inlineIcon")} />
           )}
         </button>
+      </>
+    );
+  }
+
+  // Check if any sub-step contains image fragments
+  const hasImageInSubSteps = step.subSteps.some((subStep) =>
+    subStep.parts.some((part) => typeof part !== "string" && part.type === "image")
+  );
+
+  if (hasImageInSubSteps) {
+    headNodes.push(
+      <>
+        {" "}
+        <span className={classNames(styles.imageIndicator)}>
+          {isCompleted ? (
+            <BiImage  className={classNames("inlineIcon")} />
+          ) : (
+            <BiSolidImage className={classNames("inlineIcon")} />
+          )}
+        </span>
       </>
     );
   }

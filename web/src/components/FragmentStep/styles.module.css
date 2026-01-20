@@ -1,3 +1,7 @@
 .subStepToggle {
   cursor: pointer;
 }
+
+.imageIndicator {
+  opacity: 0.7;
+}
