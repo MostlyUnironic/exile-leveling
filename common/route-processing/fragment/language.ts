@@ -17,7 +17,8 @@ export namespace Language {
     | "ascend"
     | "crafting"
     | "dir"
-    | "copy";
+    | "copy"
+    | "image";
 
   export interface FragmentParameter {
     name: string;
@@ -212,6 +213,25 @@ export namespace Language {
             {
               name: "text",
               description: "Text to copy",
+            },
+          ],
+        },
+      ],
+            ["image"]: [
+        {
+          description: "Display an image with specified dimensions",
+          parameters: [
+            {
+              name: "filename",
+              description: "Image filename (from images folder)",
+            },
+            {
+              name: "width",
+              description: "Image width in pixels",
+            },
+            {
+              name: "height",
+              description: "Image height in pixels",
             },
           ],
         },

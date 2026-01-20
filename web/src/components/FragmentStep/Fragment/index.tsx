@@ -303,3 +303,17 @@ export function Fragment(
 
   return [<>{`unmapped: ${JSON.stringify(fragment)}`}</>, null];
 }
+
+function ImageComponent(imagePath: string, width: number, height: number) {
+  return (
+    <img
+      src={getImageUrl(imagePath)}
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+        objectFit: "contain",
+      }}
+      alt=""
+    />
+  );
+}

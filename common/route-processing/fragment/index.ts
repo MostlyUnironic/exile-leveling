@@ -33,6 +33,7 @@ const EvaluateLookup: Record<
   ["crafting"]: EvaluateCrafting,
   ["dir"]: EvaluateDirection,
   ["copy"]: EvaluateCopy,
+  ["image"]: EvaluateImage,
 };
 
 interface ParseContext {
@@ -503,6 +504,33 @@ function EvaluateCopy(
     fragment: {
       type: "copy",
       text: rawFragment.slice(1).join(""),
+    },
+  };
+}
+
+function EvaluateImage(
+  rawFragment: RawFragment,
+  { state, logger }: ParseContext
+): string | EvaluateResult {
+  if (rawFragment.length != 4) return "invalid format";
+  
+  const filename = rawFragment[1];
+  const width = Number.parseInt(rawFragment[2]);
+  const height = Number.parseInt(rawFragment[3]);
+  
+  if (Number.isNaN(width) || Number.isNaN(height)) {
+    return "width and height must be numbers";
+  }
+  // Ensure the image filename has the .png extension (routes may omit it)
+  let imagePath = filename;
+  if (!/\.png$/i.test(imagePath)) imagePath = `${imagePath}.png`;
+
+  return {
+    fragment: {
+      type: "image",
+      imagePath,
+      width,
+      height,
     },
   };
 }
