@@ -97,7 +97,7 @@ export function FragmentStep({ step, isCompleted = false }: StepProps) {
             step.subSteps.map((x) => {
               // Don't show bullet for image-only sub-steps
               const isImageOnly =
-                x.parts.length === 1 &&
+                //x.parts.length === 1 &&
                 typeof x.parts[0] !== "string" &&
                 x.parts[0].type === "image";
               return (
