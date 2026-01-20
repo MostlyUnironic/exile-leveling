@@ -105,7 +105,7 @@ export function FragmentStep({ step, isCompleted = false }: StepProps) {
                   {!isImageOnly && "• "}
                   <FragmentStep step={x} isCompleted={false} />
                 </span>
-              );
+              );   
             })
           )}
         </>
