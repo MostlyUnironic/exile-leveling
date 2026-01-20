@@ -67,7 +67,7 @@
   top: 100%;
 }
 
-.navItems:not(.expand) > *:nth-child(n + 3) {
+.navItems:not(.expand) > *:nth-child(n + 4) {
   display: none;
 }
 

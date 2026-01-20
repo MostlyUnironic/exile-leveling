@@ -28,6 +28,7 @@ interface NavbarItemProps {
   onClick: () => void;
 }
 
+// Individual navigation item component
 function NavbarItem({ label, expand, icon, onClick }: NavbarItemProps) {
   return (
     <button
@@ -47,10 +48,13 @@ function NavbarItem({ label, expand, icon, onClick }: NavbarItemProps) {
 
 interface NavbarProps {}
 
+// Main navigation bar component
 export function Navbar({}: NavbarProps) {
+  // State for controlling navbar expansion
   const [navExpand, setNavExpand] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  // Callback to copy current route and PoB code to clipboard
   const clipboardRoute = useRecoilCallback(
     ({ snapshot }) =>
       async () => {
@@ -65,6 +69,7 @@ export function Navbar({}: NavbarProps) {
       },
     []
   );
+  // Hooks for clearing different types of progress
   const clearRouteProgress = useClearRouteProgress();
   const clearGemProgress = useClearGemProgress();
   const clearCollapseProgress = useClearCollapseProgress();
@@ -72,16 +77,19 @@ export function Navbar({}: NavbarProps) {
   const routeFiles = useRecoilValue(routeFilesSelector);
 
   return (
+    // Main navbar container with conditional expansion styling
     <div
       className={classNames(styles.navbar, {
         [styles.expand]: navExpand,
       })}
     >
+      {/* Container for hamburger button and navigation items */}
       <div
         className={classNames(styles.navHolder, {
           [styles.expand]: navExpand,
         })}
       >
+        {/* Hamburger menu button to toggle navbar expansion */}
         <button onClick={() => setNavExpand(!navExpand)}>
           <FaBars
             aria-label="Menu"
@@ -92,16 +100,19 @@ export function Navbar({}: NavbarProps) {
             display="block"
           />
         </button>
+        {/* Main navigation container that shows/hides based on expansion */}
         <div
           className={classNames(styles.navMain, {
             [styles.expand]: navExpand,
           })}
         >
+          {/* Container for navigation items */}
           <div
             className={classNames(styles.navItems, {
               [styles.expand]: navExpand,
             })}
           >
+            {/* Route navigation - goes to home page */}
             <NavbarItem
               label="Route"
               expand={navExpand}
@@ -111,6 +122,7 @@ export function Navbar({}: NavbarProps) {
                 setNavExpand(false);
               }}
             />
+            {/* Build navigation - goes to build page */}
             <NavbarItem
               label="Build"
               expand={navExpand}
@@ -120,6 +132,17 @@ export function Navbar({}: NavbarProps) {
                 setNavExpand(false);
               }}
             />
+            {/* Edit Route navigation - goes to route editor */}
+            <NavbarItem
+              label={`Edit Route`}
+              expand={navExpand}
+              icon={<FaTools className={classNames("inlineIcon")} />}
+              onClick={() => {
+                navigate(`/edit-route`);
+                setNavExpand(false);
+              }}
+            />
+            {/* Accordion for route sections - dynamically generated from route files */}
             <NavAccordion label="Sections" navExpand={navExpand}>
               {routeFiles.map((x, i) => (
                 <NavbarItem
@@ -133,15 +156,7 @@ export function Navbar({}: NavbarProps) {
                 />
               ))}
             </NavAccordion>
-            <NavbarItem
-              label={`Edit Route`}
-              expand={navExpand}
-              icon={<FaTools className={classNames("inlineIcon")} />}
-              onClick={() => {
-                navigate(`/edit-route`);
-                setNavExpand(false);
-              }}
-            />
+            {/* Reset Progress - clears all user progress data */}
             <NavbarItem
               label="Reset Progress"
               expand={navExpand}
@@ -154,6 +169,7 @@ export function Navbar({}: NavbarProps) {
                 setNavExpand(false);
               }}
             />
+            {/* 3rd-Party Export - copies route data to clipboard for external tools */}
             <NavbarItem
               label="3rd-Party Export"
               expand={navExpand}
@@ -165,6 +181,7 @@ export function Navbar({}: NavbarProps) {
                 setNavExpand(false);
               }}
             />
+            {/* GitHub link - opens project repository in new tab */}
             <NavbarItem
               label="Project on Github"
               expand={navExpand}
@@ -180,9 +197,11 @@ export function Navbar({}: NavbarProps) {
               }}
             />
           </div>
+          {/* Separator line when navbar is expanded */}
           {navExpand && <hr />}
         </div>
       </div>
+      {/* Bottom separator line */}
       <hr />
     </div>
   );
@@ -193,18 +212,23 @@ interface NavAccordionProps {
   navExpand: boolean;
 }
 
+// Accordion component for grouping navigation items (like route sections)
 function NavAccordion({
   label,
   navExpand,
   children,
 }: React.PropsWithChildren<NavAccordionProps>) {
+  // State for accordion expansion
   const [accordionExpand, setAccordionExpand] = useState<boolean>(false);
 
+  // Collapse accordion when main navbar collapses
   useEffect(() => {
     setAccordionExpand(false);
   }, [navExpand]);
+  
   return (
     <>
+      {/* Accordion header - clickable to expand/collapse */}
       <NavbarItem
         label={label}
         expand={navExpand}
@@ -212,7 +236,9 @@ function NavAccordion({
           setAccordionExpand(!accordionExpand);
         }}
       />
+      {/* Separator line when accordion is expanded */}
       {accordionExpand && <hr />}
+      {/* Container for accordion content */}
       <div
         className={classNames(styles.navAccordion, styles.navItems, {
           [styles.expand]: accordionExpand,

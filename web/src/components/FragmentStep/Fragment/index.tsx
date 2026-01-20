@@ -299,6 +299,8 @@ export function Fragment(
       return [DirectionComponent(fragment.dirIndex), null];
     case "copy":
       return [<CopyToClipboard text={fragment.text} />, null];
+    case "image":
+      return [ImageComponent(fragment.imagePath, fragment.width, fragment.height), null];    
   }
 
   return [<>{`unmapped: ${JSON.stringify(fragment)}`}</>, null];
