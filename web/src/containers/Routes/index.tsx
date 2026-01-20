@@ -20,14 +20,17 @@ export default function RoutesContainer() {
     for (let stepIndex = 0; stepIndex < section.steps.length; stepIndex++) {
       const step = section.steps[stepIndex];
 
-      if (step.type == "fragment_step")
+      if (step.type == "fragment_step") {
+        const completionState = routeProgressSelectorFamily(
+          [sectionIndex, stepIndex].toString()
+        );
+        const isCompleted = useRecoilValue(completionState);
         taskItems.push({
           key: stepIndex,
-          isCompletedState: routeProgressSelectorFamily(
-            [sectionIndex, stepIndex].toString()
-          ),
-          children: <FragmentStep key={stepIndex} step={step} />,
+          isCompletedState: completionState,
+          children: <FragmentStep key={stepIndex} step={step} isCompleted={isCompleted} />,
         });
+      }
 
       if (step.type == "gem_step")
         taskItems.push({
