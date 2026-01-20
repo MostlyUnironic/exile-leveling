@@ -306,15 +306,18 @@ export function Fragment(
   return [<>{`unmapped: ${JSON.stringify(fragment)}`}</>, null];
 }
 
-function ImageComponent(imagePath: string, width: number, height: number) {
+function ImageComponent(imagePath: string, width?: number, height?: number) {
+  const style: React.CSSProperties = {
+    objectFit: "contain",
+  };
+  
+  if (width !== undefined) style.width = `${width}px`;
+  if (height !== undefined) style.height = `${height}px`;
+  
   return (
     <img
       src={getImageUrl(imagePath)}
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-        objectFit: "contain",
-      }}
+      style={style}
       alt=""
     />
   );

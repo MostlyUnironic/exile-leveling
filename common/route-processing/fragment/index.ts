@@ -512,15 +512,22 @@ function EvaluateImage(
   rawFragment: RawFragment,
   { state, logger }: ParseContext
 ): string | EvaluateResult {
-  if (rawFragment.length != 4) return "invalid format";
+  if (rawFragment.length < 2 || rawFragment.length > 4) return "invalid format";
   
   const filename = rawFragment[1];
-  const width = Number.parseInt(rawFragment[2]);
-  const height = Number.parseInt(rawFragment[3]);
+  let width: number | undefined;
+  let height: number | undefined;
   
-  if (Number.isNaN(width) || Number.isNaN(height)) {
-    return "width and height must be numbers";
+  if (rawFragment.length >= 3) {
+    width = Number.parseInt(rawFragment[2]);
+    if (Number.isNaN(width)) return "width must be a number";
   }
+  
+  if (rawFragment.length >= 4) {
+    height = Number.parseInt(rawFragment[3]);
+    if (Number.isNaN(height)) return "height must be a number";
+  }
+  
   // Ensure the image filename has the .png extension (routes may omit it)
   let imagePath = filename;
   if (!/\.png$/i.test(imagePath)) imagePath = `${imagePath}.png`;
@@ -529,8 +536,8 @@ function EvaluateImage(
     fragment: {
       type: "image",
       imagePath,
-      width,
-      height,
+      ...(width !== undefined && { width }),
+      ...(height !== undefined && { height }),
     },
   };
 }
