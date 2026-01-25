@@ -1,0 +1,99 @@
+const e=`#section Act 1 - 20"
+Find and kill {kill|Hillock}
+➞ {enter|1_1_town} #Lioneye's Watch
+Hand in {quest|a1q1} #Enemy at the Gate
+➞ {enter|1_1_2} #The Coast
+    #sub {image|1_1_2 y_1|200} {image|1_1_2 y_2|200} {image|1_1_2 y_3|200}
+    #sub Stick to the right side, following the wall.
+#ifdef LEAGUE_START
+    Get {waypoint_get}
+#endif
+➞ {enter|1_1_3} #The Mud Flats
+    #sub {image|1_1_3 y_1|200} {image|1_1_3 y_2|200}
+    #sub Little rivers connect the three items.
+Find 3x{quest_text|Glyph}
+    #sub Little streams connect the 3 Rhoa nests
+    #sub Usually form a triangle, but will rarely form a line
+➞ {enter|1_1_4_1} #The Submerged Passage
+#ifdef LEAGUE_START
+    {waypoint|1_1_2} #The Coast
+    ➞ {enter|1_1_2a} #The Tidal Island
+    #sub The side without a cliff is the shortest way.
+    Find and kill {kill|Hailrake}, take {quest_text|Medicine Chest}
+        #sub Go {dir|270}
+        #sub If you find a ledge, turn around and go {dir|90}
+        #sub Recommended Level: 4
+    {logout}
+    Hand in {quest|a1q5} #Mercy Mission
+    Hand in {quest|a1q4} #Breaking Some Eggs
+#endif
+#ifndef LEAGUE_START
+    {waypoint|1_1_town} #Lioneye's Watch
+    Hand in {quest|a1q4} #Breaking Some Eggs
+#endif
+{waypoint|1_1_4_1} #The Submerged Passage
+    #sub {image|1_1_4_1 y_1|200} {image|1_1_4_1 y_2|200} {image|1_1_4_1 y_3|200}
+Find bridge, place {portal|set}
+➞ {enter|1_1_5} #The Ledge
+    #sub This layout is always linear, there are little totems on one side of the waypoint, this side will always be the side at which the exit is located.
+➞ {enter|1_1_6} #The Climb
+    #sub {image|1_1_6 y_1|200} {image|1_1_6 y_2|200}
+➞ {enter|1_1_7_1} #The Lower Prison
+{waypoint|1_1_town} #Lioneye's Watch
+Take {portal|use}
+➞ {enter|1_1_4_0} #The Flooded Depths
+    #sub {image|1_1_4_0 y_1|200} {image|1_1_4_0 y_2|200} {image|1_1_4_0 y_3|200}
+    #sub Go right of the bridge
+Find and kill {kill|The Dweller of the Deep}
+    #sub Search opposite the entrance
+    #sub Look for the large empty room
+{logout}
+Hand in {quest|a1q7} #The Dweller of the Deep
+Hand in {quest|a1q2|a1q2b} #The Caged Brute
+{waypoint|1_1_7_1} #The Lower Prison
+    #sub {image|1_1_7_1 y_1|200} {image|1_1_7_1 y_2|200} {image|1_1_7_1 y_3|200} {image|1_1_7_1 y_4|200}
+#ifdef LEAGUE_START
+    Complete {trial}
+        #sub Usually {dir|45}
+#endif
+➞ {enter|1_1_7_2} #The Upper Prison
+    #sub {image|1_1_7_2 y_1|200} {image|1_1_7_2 y_2|200} {image|1_1_7_2 y_3|200} {image|1_1_7_2 y_4|200} {image|1_1_7_2 y_5|200}
+#ifdef LEAGUE_START
+    Find {generic|Chemist's Strongbox}
+        #sub Look for map icon, access with nearby switch
+        #sub High chance for {generic|Quicksilver Flask}
+        #sub Vendor {generic|Quicksilver Flask} + {generic|Orb of Augmentation} + Normal {generic|Boots}
+        #sub Vendor {generic|Quicksilver Flask} + {generic|Orb of Augmentation} + Movement Speed {generic|Boots}
+#endif
+➞ {arena|The Warden's Quarters}, kill {kill|Brutus, Lord Incarcerator}
+    #sub Recommended Level: 8
+{logout}
+Hand in {quest|a1q2|a1q2} #The Caged Brute
+{waypoint|1_1_8} #Prisoner's Gate
+    #sub {image|1_1_8 y_1|200} {image|1_1_8 y_2|200} {image|1_1_8 y_3|200} {image|1_1_8 y_4|200}
+    #sub Look for the side of the road that has the ledge down, usually on the right side.
+➞ {enter|1_1_9} #The Ship Graveyard
+    #sub {image|1_1_9 y_1|200} {image|1_1_9 y_2|200} {image|1_1_9 y_3|200} {image|1_1_9 y_4|200}
+    #sub Look for waypoint first, then find Fairgraves, and move away from the plateau, generally up or down
+Find {area|1_1_9a}, place {portal|set} #The Ship Graveyard Cave
+➞ {enter|1_1_11_1} #The Cavern of Wrath
+{waypoint|1_1_town} #Lioneye's Watch
+Take {portal|use}
+➞ {enter|1_1_9a} #The Ship Graveyard Cave
+Find {quest_text|Slave Girl}, take {quest_text|Allflame}
+    #sub Search opposite the entrance
+➞ {enter|1_1_9}, kill {kill|Captain Fairgraves} #The Ship Graveyard
+{logout}
+Hand in {quest|a1q6} #The Marooned Mariner
+Hand in {quest|a1q3} #The Siren's Cadence
+{waypoint|1_1_11_1} #The Cavern of Wrath
+    #sub {image|1_1_11_1 y_1|200} {image|1_1_11_1 y_2|200} {image|1_1_11_1 y_3|200} 
+➞ {enter|1_1_11_2} #The Cavern of Anger
+    #sub {image|1_1_11_2 y_1|200} {image|1_1_11_2 y_2|200} {image|1_1_11_2 y_3|200}
+    #sub Often bottom right, you can follow the spirits, if you see piles of gold you’re close to Merveil.
+    #sub Follow the water
+➞ {arena|Merveil's Lair}, kill {kill|Merveil, the Siren}
+    #sub Follow the water
+    #sub Recommended Level: 12
+
+`;export{e as default};
