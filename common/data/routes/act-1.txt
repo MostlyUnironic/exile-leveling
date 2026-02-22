@@ -35,9 +35,10 @@ Find 3x{quest_text|Glyph}
     #sub {image|1_1_4_1 y_1|200} {image|1_1_4_1 y_2|200} {image|1_1_4_1 y_3|200}
 Find bridge, place {portal|set}
 ➞ {enter|1_1_5} #The Ledge
-    #sub This layout is always linear, there are little totems on one side of the waypoint, this side will always be the side at which the exit is located.
+    #sub Always stick to the Mountain Side Wall till you get out of the Goat Passage, then stick to the Water Side Wall.
+    #sub {image|1_1_5 y_1|200}
 ➞ {enter|1_1_6} #The Climb
-    #sub {image|1_1_6 y_1|200} {image|1_1_6 y_2|200}
+    #sub {image|1_1_6 y_1|200} {image|1_1_6 y_2|200} {image|1_1_6 y_3|200}
 ➞ {enter|1_1_7_1} #The Lower Prison
 {waypoint|1_1_town} #Lioneye's Watch
 Take {portal|use}
