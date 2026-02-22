@@ -2,23 +2,40 @@
 Find and kill {kill|Hillock}
 ➞ {enter|1_1_town} #Lioneye's Watch
 Hand in {quest|a1q1} #Enemy at the Gate
+
 ➞ {enter|1_1_2} #The Coast
-    #sub {image|1_1_2 y_1|200} {image|1_1_2 y_2|200} {image|1_1_2 y_3|200}
+    #sub The Golden Rule of Coast is that Waypoints and Exits have to be on Water Level.
+    #sub Generally Walk East / North-East to identify the direction the Layout is extending. Follow along the Coast and try to get a Layer down for each Layer that you go upwards. A Layer up is indicated by a Ledge / Slope.
+    #sub {image|1_1_2 y_4|300} {image|1_1_2 y_8|300} {image|1_1_2 y_6|300} {image|1_1_2 y_7|300}
+    #sub {image|1_1_2 y_5|300} {image|1_1_2 y_9|300} {image|1_1_2 y_10|300} {image|1_1_2 y_11|300}
     #sub Stick to the right side, following the wall.
+
 #ifdef LEAGUE_START
     Get {waypoint_get}
 #endif
+
 ➞ {enter|1_1_3} #The Mud Flats
-    #sub {image|1_1_3 y_1|200} {image|1_1_3 y_2|200}
-    #sub Little rivers connect the three items.
+    #sub If we are facing South and next to the Entrance is a long Wall we have the South Variant
+    #sub If we are facing South but the Zone opens up both South and North, then we are in a East Variant.
+    #sub North Variant has the Big Rock right above the Entrance
+    #sub {image|1_1_3 y_6|250} {image|1_1_3 y_7|250} {image|1_1_3 y_8|250} {image|1_1_3 y_9|250}
+    #sub {image|1_1_3 y_3|250} {image|1_1_3 y_4|250} {image|1_1_3 y_5|250}
+
 Find 3x{quest_text|Glyph}
     #sub Little streams connect the 3 Rhoa nests
     #sub Usually form a triangle, but will rarely form a line
 ➞ {enter|1_1_4_1} #The Submerged Passage
 #ifdef LEAGUE_START
     {waypoint|1_1_2} #The Coast
-    ➞ {enter|1_1_2a} #The Tidal Island
+
+    ➞ {enter|1_1_2a} #The Tidal Island 
+    #sub The simple read is, go left, if facing a Ledge, turn around and take the Right / East Side to get to Hailrake.
+    #sub If you face a Long Gap Ledge, continue the Passage, it will be a short Ledge.
+    #sub If you have a 2 Rocks Layout with a Passage, take the Passage if the 2nd Rock ends
+    #sub {image|1_1_2a y_1|200} {image|1_1_2a y_2|200} {image|1_1_2a y_3|200} {image|1_1_2a y_4|200} {image|1_1_2a y_5|200}
+    #sub {image|1_1_2a y_6|200} {image|1_1_2a y_7|200} {image|1_1_2a y_8|200} {image|1_1_2a y_9|200} {image|1_1_2a y_10|200}
     #sub The side without a cliff is the shortest way.
+
     Find and kill {kill|Hailrake}, take {quest_text|Medicine Chest}
         #sub Go {dir|270}
         #sub If you find a ledge, turn around and go {dir|90}
@@ -31,34 +48,60 @@ Find 3x{quest_text|Glyph}
     {waypoint|1_1_town} #Lioneye's Watch
     Hand in {quest|a1q4} #Breaking Some Eggs
 #endif
+
 {waypoint|1_1_4_1} #The Submerged Passage
-    #sub {image|1_1_4_1 y_1|200} {image|1_1_4_1 y_2|200} {image|1_1_4_1 y_3|200}
+    #sub If the Waypoint Room has only one Exit I define it as Funnel Layout
+    #sub If there is no 2nd Room or Passage behind the Waypoint to the East. Head South, to the Bridge.
+    #sub If the Zone if opening North, the Exit will be in the North-West Corner of the Zone
+    #sub If the Zone is opening South, the Bridge can lead South-East or North-East. To differentiate between the 2 Variants, check if the Zone also opens up North-East or just South.
+    #sub {image|1_1_4_1 y_4|300} {image|1_1_4_1 y_5|300} {image|1_1_4_1 y_6|300}
+    #sub {image|1_1_4_1 y_7|300} {image|1_1_4_1 y_8|300} {image|1_1_4_1 y_9|300}
 Find bridge, place {portal|set}
+
 ➞ {enter|1_1_5} #The Ledge
     #sub Always stick to the Mountain Side Wall till you get out of the Goat Passage, then stick to the Water Side Wall.
-    #sub {image|1_1_5 y_1|200}
+    #sub {image|1_1_5 y_1|500}
+
 ➞ {enter|1_1_6} #The Climb
-    #sub {image|1_1_6 y_1|200} {image|1_1_6 y_2|200} {image|1_1_6 y_3|200}
+    #sub Follow the West Edge from the Entrance
+    #sub {image|1_1_6 y_3|300}
+
 ➞ {enter|1_1_7_1} #The Lower Prison
 {waypoint|1_1_town} #Lioneye's Watch
 Take {portal|use}
+
 ➞ {enter|1_1_4_0} #The Flooded Depths
-    #sub {image|1_1_4_0 y_1|200} {image|1_1_4_0 y_2|200} {image|1_1_4_0 y_3|200}
+    #sub {image|1_1_4_0 y_4|200} {image|1_1_4_0 y_5|200} {image|1_1_4_0 y_6|200} {image|1_1_4_0 y_7|200}
     #sub Go right of the bridge
 Find and kill {kill|The Dweller of the Deep}
     #sub Search opposite the entrance
     #sub Look for the large empty room
+
 {logout}
 Hand in {quest|a1q7} #The Dweller of the Deep
 Hand in {quest|a1q2|a1q2b} #The Caged Brute
+
 {waypoint|1_1_7_1} #The Lower Prison
-    #sub {image|1_1_7_1 y_1|200} {image|1_1_7_1 y_2|200} {image|1_1_7_1 y_3|200} {image|1_1_7_1 y_4|200}
+    #sub To identify the layout you are in, first check the North-East Path. If it is a Dead End, you are guranteed in the East Variant.
+    #sub If it is not a Dead End, but the Trial is in a straight line from Waypoint, the Exit is in the South-West Corner.
+    #sub If you see the Trial, but it is facing North-West, same direction the Entrance is to the Waypoint. Then the Exit will be in the far East Corner.
+    #sub If the Zone does a L-Turn east, follow the Zone to see the Trial, the Exit will be in the South-East Corner after the Trial.
+    #sub Finaly if you do not see the Trial when going North-East, but the Zone continues, the Trial will be in the East corner of the Zone. 
+    #sub {image|1_1_7_1 y_5|300} {image|1_1_7_1 y_6|300} {image|1_1_7_1 y_7|300} {image|1_1_7_1 y_8|300}
+    #sub {image|1_1_7_1 y_9|300} {image|1_1_7_1 y_10|300} {image|1_1_7_1 y_11|300}
+
 #ifdef LEAGUE_START
     Complete {trial}
         #sub Usually {dir|45}
 #endif
+
 ➞ {enter|1_1_7_2} #The Upper Prison
-    #sub {image|1_1_7_2 y_1|200} {image|1_1_7_2 y_2|200} {image|1_1_7_2 y_3|200} {image|1_1_7_2 y_4|200} {image|1_1_7_2 y_5|200}
+    #sub If the North-East {dir|45} Room is a Dead End, the Zone extends West {dir|270}, if it connects to further Rooms, its a East {dir|90} Variant.
+    #sub Determine if it is a North or South Variant based on the Edge of the Zone.
+    #sub 
+    #sub {image|1_1_7_2 y_6|300} {image|1_1_7_2 y_8|250} {image|1_1_7_2 y_7|250} {image|1_1_7_2 y_9|250}
+    #sub {image|1_1_7_2 y_11|250} {image|1_1_7_2 y_13|250} {image|1_1_7_2 y_10|250} {image|1_1_7_2 y_12|250}
+
 #ifdef LEAGUE_START
     Find {generic|Chemist's Strongbox}
         #sub Look for map icon, access with nearby switch
@@ -70,29 +113,42 @@ Hand in {quest|a1q2|a1q2b} #The Caged Brute
     #sub Recommended Level: 8
 {logout}
 Hand in {quest|a1q2|a1q2} #The Caged Brute
+
 {waypoint|1_1_8} #Prisoner's Gate
-    #sub {image|1_1_8 y_1|200} {image|1_1_8 y_2|200} {image|1_1_8 y_3|200} {image|1_1_8 y_4|200}
+    #sub {image|1_1_8 y_5|200} {image|1_1_8 y_6|200} {image|1_1_8 y_7|200} {image|1_1_8 y_8|200}
     #sub Look for the side of the road that has the ledge down, usually on the right side.
+
 ➞ {enter|1_1_9} #The Ship Graveyard
-    #sub {image|1_1_9 y_1|200} {image|1_1_9 y_2|200} {image|1_1_9 y_3|200} {image|1_1_9 y_4|200}
-    #sub Look for waypoint first, then find Fairgraves, and move away from the plateau, generally up or down
+    #sub Follow the Cliff Side till you see the Ship Graveyard Cave Entrance or the Cavern of Wrath Entrance.
+    #sub {image|1_1_9 y_5|200} {image|1_1_9 y_6|200} {image|1_1_9 y_7|200} {image|1_1_9 y_8|200} {image|1_1_9 y_9|200}
+    #sub {image|1_1_9 y_10|200} {image|1_1_9 y_11|200} {image|1_1_9 y_12|200}
+
 Find {area|1_1_9a}, place {portal|set} #The Ship Graveyard Cave
 ➞ {enter|1_1_11_1} #The Cavern of Wrath
 {waypoint|1_1_town} #Lioneye's Watch
 Take {portal|use}
+
 ➞ {enter|1_1_9a} #The Ship Graveyard Cave
+    #sub The Allflame and Exit to Fairgraves Arena are always in a Diagonal Line to the Entrance. The Pathing through the Cave System is a bit more Zig Zag. But keeping the Diagonal Line in mind we just need to determine in which Direction the Zone extends to.
+    #sub {image|1_1_9a y_1|200} {image|1_1_9a y_2|300} {image|1_1_9a y_3|250} {image|1_1_9a y_4|250} 
+
 Find {quest_text|Slave Girl}, take {quest_text|Allflame}
     #sub Search opposite the entrance
 ➞ {enter|1_1_9}, kill {kill|Captain Fairgraves} #The Ship Graveyard
 {logout}
 Hand in {quest|a1q6} #The Marooned Mariner
 Hand in {quest|a1q3} #The Siren's Cadence
+
 {waypoint|1_1_11_1} #The Cavern of Wrath
-    #sub {image|1_1_11_1 y_1|200} {image|1_1_11_1 y_2|200} {image|1_1_11_1 y_3|200} 
+    #sub Follow the River in the direction the Water flows / the Zone extends to.
+    #sub {image|1_1_11_1 y_4|250} {image|1_1_11_1 y_5|200}
+    
 ➞ {enter|1_1_11_2} #The Cavern of Anger
-    #sub {image|1_1_11_2 y_1|200} {image|1_1_11_2 y_2|200} {image|1_1_11_2 y_3|200}
-    #sub Often bottom right, you can follow the spirits, if you see piles of gold you’re close to Merveil.
+    #sub The Exit of the Zone is always in the North-East Corner of the Zone. You can identify which one by checking the Upper Bridge at the Start.
     #sub Follow the water
+    #sub {image|1_1_11_2 y_4|200} {image|1_1_11_2 y_5|300}
+    
+
 ➞ {arena|Merveil's Lair}, kill {kill|Merveil, the Siren}
     #sub Follow the water
     #sub Recommended Level: 12
