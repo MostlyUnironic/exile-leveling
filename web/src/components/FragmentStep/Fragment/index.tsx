@@ -309,6 +309,7 @@ export function Fragment(
 function ImageComponent(imagePath: string, width?: number, height?: number) {
   const style: React.CSSProperties = {
     objectFit: "contain",
+    verticalAlign: "top",
   };
   
   if (width !== undefined) style.width = `${width}px`;
