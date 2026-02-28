@@ -65,3 +65,8 @@
 .gemSecondary {
   margin-left: var(--size-4);
 }
+
+.completed {
+  opacity: 0.25;
+  cursor: pointer;
+}

@@ -11,6 +11,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { MdCircle } from "react-icons/md";
+import { gemProgressSelectorFamily } from "../../state/gem-progress";
+import { useRecoilState } from "recoil";
 
 interface GemLinkViewerProps {
   gemLinks: RouteData.GemLinkGroup[];
@@ -106,15 +108,26 @@ interface GemLinkProps {
 
 function GemLink({ gemLink, isPrimary, onTooltip }: GemLinkProps) {
   const gem = Data.Gems[gemLink.id];
+  const [isCompleted, setIsCompleted] = useRecoilState(
+    gemProgressSelectorFamily(gemLink.id)
+  );
+
   return (
     <div
-      className={isPrimary ? styles.gemPrimary : styles.gemSecondary}
+      className={classNames(
+        isPrimary ? styles.gemPrimary : styles.gemSecondary,
+        { [styles.completed]: isCompleted }
+      )}
       onPointerEnter={() => {
         onTooltip(gemLink);
       }}
       onPointerLeave={() => {
         onTooltip(null);
       }}
+      onClick={() => {
+        setIsCompleted(!isCompleted);
+      }}
+      tabIndex={0}
     >
       <MdCircle
         color={Data.GemColours[gem.primary_attribute]}
