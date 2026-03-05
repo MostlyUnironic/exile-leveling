@@ -80,7 +80,7 @@ export interface TaskListProps {
 
 export function TaskList({ items }: TaskListProps) {
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
-  const isInitialMount = useRef(true);
+  const prevCompletionStates = useRef<boolean[]>([]);
 
   /**
    * Selector to read all completion states legally
@@ -95,12 +95,16 @@ export function TaskList({ items }: TaskListProps) {
 
   const completionStates = useRecoilValue(completionStatesSelector);
 
-  // Scroll to NEXT uncompleted item
+  // Scroll to NEXT uncompleted item only if a task was actually completed
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
+    // Check if any task was completed (changed from false to true)
+    const taskCompleted = completionStates.some((current, i) => 
+      current && !prevCompletionStates.current[i]
+    );
+
+    prevCompletionStates.current = completionStates;
+
+    if (!taskCompleted) return;
 
     const nextIndex = completionStates.findIndex(
       (completed) => !completed
