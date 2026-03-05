@@ -46,6 +46,7 @@ export namespace RouteData {
     id: GameData.Gem["id"];
     note: string;
     count: number;
+    delayUntilAct?: number; // 1-10 for acts, or 0 for immediate
   }
 
   export interface GemLinkGroup {
