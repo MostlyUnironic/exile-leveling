@@ -54,6 +54,10 @@ export function GemEditForm({ requiredGems, onUpdate }: GemEditFormProps) {
               onUpdate(workingGems);
             }
           }}
+          onDelayUntilActChange={(value) => {
+            workingGems[i] = { ...workingGems[i], delayUntilAct: value };
+            onUpdate(workingGems);
+          }}
         />
       ),
     });

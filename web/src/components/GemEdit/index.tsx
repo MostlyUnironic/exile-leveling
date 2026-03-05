@@ -13,6 +13,7 @@ interface GemOrderProps {
   onMoveDown?: () => void;
   onDelete?: () => void;
   onCountChange?: (value: number) => void;
+  onDelayUntilActChange?: (value: number) => void;
 }
 
 export function GemEdit({
@@ -22,6 +23,7 @@ export function GemEdit({
   onMoveDown,
   onDelete,
   onCountChange,
+  onDelayUntilActChange,
 }: GemOrderProps) {
   return (
     <div className={classNames(styles.holder)}>
@@ -38,6 +40,28 @@ export function GemEdit({
             if (onCountChange) {
               let num = Number.parseInt(e.target.value);
               if (!isNaN(num)) onCountChange(num);
+            }
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        />
+        <input
+          className={classNames(formStyles.formInput, styles.inputCount)}
+          type="number"
+          min="0"
+          max="10"
+          value={requiredGem.delayUntilAct ?? 0}
+          placeholder="Act"
+          title="Act where gem starts appearing (0 = immediate)"
+          onPointerDown={(e) => {
+            e.currentTarget.select();
+            e.preventDefault();
+          }}
+          onChange={(e) => {
+            if (onDelayUntilActChange) {
+              let num = Number.parseInt(e.target.value);
+              if (!isNaN(num)) onDelayUntilActChange(Math.max(0, Math.min(10, num)));
             }
           }}
           onClick={(e) => {

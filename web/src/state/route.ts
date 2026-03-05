@@ -43,6 +43,11 @@ const baseRouteSelector = selector({
   },
 });
 
+function getActNumberFromSectionName(sectionName: string): number {
+  const match = sectionName.match(/Act\s+(\d+)/i);
+  return match ? parseInt(match[1], 10) : 0;
+}
+
 export const routeSelector = selector({
   key: "routeSelector",
   get: async ({ get }) => {
@@ -69,6 +74,8 @@ export const routeSelector = selector({
         steps: [],
       };
 
+      const currentActNumber = getActNumberFromSectionName(section.name);
+
       for (const step of section.steps) {
         const gemSteps: RouteData.GemStep[] = [];
 
@@ -81,7 +88,8 @@ export const routeSelector = selector({
                   buildData,
                   requiredGems,
                   questGems,
-                  vendorGems
+                  vendorGems,
+                  currentActNumber
                 )
               );
             }

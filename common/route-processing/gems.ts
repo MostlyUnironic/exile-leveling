@@ -8,7 +8,8 @@ export function buildGemSteps(
   buildData: RouteData.BuildData,
   requiredGems: RouteData.RequiredGem[],
   questGems: Set<number>,
-  vendorGems: Set<number>
+  vendorGems: Set<number>,
+  currentActNumber: number = 0
 ) {
   const quest = Data.Quests[questFragment.questId];
   const gemSteps: RouteData.GemStep[] = [];
@@ -22,7 +23,8 @@ export function buildGemSteps(
       buildData,
       requiredGems,
       questGems,
-      reward_offer.quest
+      reward_offer.quest,
+      currentActNumber
     );
     if (questReward !== null)
       gemSteps.push({
@@ -43,7 +45,8 @@ export function buildGemSteps(
       requiredGems,
       questGems,
       vendorGems,
-      reward_offer.vendor
+      reward_offer.vendor,
+      currentActNumber
     );
     for (const vendorReward of vendorRewards) {
       let requiredGem = requiredGems[vendorReward];
@@ -83,11 +86,13 @@ function findQuestGem(
   buildData: RouteData.BuildData,
   requiredGems: RouteData.RequiredGem[],
   questGems: Set<number>,
-  quest_rewards: GameData.RewardOffer["quest"]
+  quest_rewards: GameData.RewardOffer["quest"],
+  currentActNumber: number = 0
 ): number | null {
   for (let i = 0; i < requiredGems.length; i++) {
     const requiredGem = requiredGems[i];
     if (questGems.has(i)) continue;
+    if (requiredGem.delayUntilAct && requiredGem.delayUntilAct > currentActNumber) continue;
 
     const reward = quest_rewards[requiredGem.id];
     if (!reward) continue;
@@ -110,13 +115,15 @@ function findVendorGems(
   requiredGems: RouteData.RequiredGem[],
   questGems: Set<number>,
   vendorGems: Set<number>,
-  vendor_rewards: GameData.RewardOffer["vendor"]
+  vendor_rewards: GameData.RewardOffer["vendor"],
+  currentActNumber: number = 0
 ): number[] {
   const result: number[] = [];
   for (let i = 0; i < requiredGems.length; i++) {
     const requiredGem = requiredGems[i];
     if ((requiredGem.count === 1 && questGems.has(i)) || vendorGems.has(i))
       continue;
+    if (requiredGem.delayUntilAct && requiredGem.delayUntilAct > currentActNumber) continue;
 
     const reward = vendor_rewards[requiredGem.id];
     if (!reward) continue;
