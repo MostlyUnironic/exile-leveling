@@ -48,9 +48,8 @@ export function GemEdit({
         />
         <input
           className={classNames(formStyles.formInput, styles.inputCount)}
-          type="number"
-          min="0"
-          max="10"
+          type="text"
+          pattern="\d*"
           value={requiredGem.delayUntilAct ?? 0}
           placeholder="Act"
           title="Act where gem starts appearing (0 = immediate)"
