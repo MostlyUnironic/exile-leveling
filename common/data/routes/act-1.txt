@@ -9,9 +9,7 @@ Hand in {quest|a1q1} #Enemy at the Gate
     #sub Handgun: can walk past ↘️ / ➡️ | can't walk past ⬆️
     #sub Cookie Bite: ↗️ wall indent = Long → reset
     #sub Generally Walk East / North-East to identify the direction the Layout is extending. Follow along the Coast and try to get a Layer down for each Layer that you go upwards. A Layer up is indicated by a Ledge / Slope.
-    #sub {image|1_1_2 y_4|300} {image|1_1_2 y_8|300} {image|1_1_2 y_6|300} {image|1_1_2 y_7|300}
-    #sub {image|1_1_2 y_5|300} {image|1_1_2 y_9|300} {image|1_1_2 y_10|300} {image|1_1_2 y_11|300}
-    #sub Stick to the right side, following the wall.
+    #sub {image|1_1_2 y_12|800}
 
 #ifdef LEAGUE_START
     Get {waypoint_get}
@@ -21,8 +19,7 @@ Hand in {quest|a1q1} #Enemy at the Gate
     #sub S Variant: spawn facing ⬇️ + long wall >> ⬇️ Nest1 → ➡️ Nest2 → ➡️ Nest3
     #sub E Variant: zone open ⬆️ + ⬇️ >> ➡️ Nest1 → ➡️ Nest2 → ➡️ Nest3 → ↗️ or ↘️ Exit
     #sub N Variant: big rock above start 🪨 ↗️ Nest1 → ↗️ Nest2 → ↖️ Nest3 → ⬆️ or ↖️ Exit
-    #sub {image|1_1_3 y_6|250} {image|1_1_3 y_7|250} {image|1_1_3 y_8|250} {image|1_1_3 y_9|250}
-    #sub {image|1_1_3 y_3|250} {image|1_1_3 y_4|250} {image|1_1_3 y_5|250}
+    #sub {image|1_1_3 y_10|800} 
 
 Find 3x{quest_text|Glyph}
     #sub Little streams connect the 3 Rhoa nests
@@ -35,9 +32,7 @@ Find 3x{quest_text|Glyph}
     #sub Start → go ⬅️ (best odds)
     #sub If ⬅️ hits ledge:  turn ➡️ (unless long-gap rule)
     #sub 2 Rocks layout: 2nd rock points ⬅️ → go ⬅️ | 2nd rock points ➡️ → go ➡️
-    #sub {image|1_1_2a y_1|200} {image|1_1_2a y_2|200} {image|1_1_2a y_3|200} {image|1_1_2a y_4|200} {image|1_1_2a y_5|200}
-    #sub {image|1_1_2a y_6|200} {image|1_1_2a y_7|200} {image|1_1_2a y_8|200} {image|1_1_2a y_9|200} {image|1_1_2a y_10|200}
-    #sub The side without a cliff is the shortest way.
+    #sub {image|1_1_2a y_11|900} 
 
     Find and kill {kill|Hailrake}, take {quest_text|Medicine Chest}
         #sub Go {dir|270}
@@ -57,18 +52,17 @@ Find 3x{quest_text|Glyph}
     #sub Waypoint room: only 1 exit (funnel) + 2nd Room at ⬅️ → Bridge to ↘️
     #sub Zone opens ⬆️: Exit far ↖️
     #sub Zone opens ⬇️: Exit ↘️ or ↗️
-    #sub {image|1_1_4_1 y_4|300} {image|1_1_4_1 y_5|300} {image|1_1_4_1 y_6|300}
-    #sub {image|1_1_4_1 y_7|300} {image|1_1_4_1 y_8|300} {image|1_1_4_1 y_9|300}
+    #sub {image|1_1_4_1 y_10|900}
 Find bridge, place {portal|set}
 
 ➞ {enter|1_1_5} #The Ledge
     #sub Stick mountain wall 🪨 
     #sub After Goat Passage: Switch → follow water side 🌊
-    #sub {image|1_1_5 y_1|500}
+    #sub {image|1_1_5 y_2|800}
 
 ➞ {enter|1_1_6} #The Climb
     #sub From entrance → hug ⬅️ edge
-    #sub {image|1_1_6 y_3|300}
+    #sub {image|1_1_6 y_4|900}
 
 ➞ {enter|1_1_7_1} #The Lower Prison
 {waypoint|1_1_town} #Lioneye's Watch
@@ -77,8 +71,8 @@ Take {portal|use}
 ➞ {enter|1_1_4_0} #The Flooded Depths
     #sub Mark directions where layout ENDS ⛔ → Boss = opposite direction
     #sub ex:. Ends ↙️ + ↘️ → go ⬆️
-    #sub {image|1_1_4_0 y_4|200} {image|1_1_4_0 y_5|200} {image|1_1_4_0 y_6|200} {image|1_1_4_0 y_7|200}
-    #sub Go right of the bridge
+    #sub {image|1_1_4_0 y_8|600}
+
 Find and kill {kill|The Dweller of the Deep}
     #sub Search opposite the entrance
     #sub Look for the large empty room
@@ -94,8 +88,7 @@ Hand in {quest|a1q2|a1q2b} #The Caged Brute
     #sub Trial faces ↖️ (same as WP side):  Exit far ➡️
     #sub Zone L-turn: Exit ↘️
     #sub ↗️ open but no Trial: Trial far ➡️
-    #sub {image|1_1_7_1 y_5|300} {image|1_1_7_1 y_6|300} {image|1_1_7_1 y_7|300} {image|1_1_7_1 y_8|300}
-    #sub {image|1_1_7_1 y_9|300} {image|1_1_7_1 y_10|300} {image|1_1_7_1 y_11|300}
+    #sub {image|1_1_7_1 y_12|800}
 
 #ifdef LEAGUE_START
     Complete {trial}
@@ -106,8 +99,7 @@ Hand in {quest|a1q2|a1q2b} #The Caged Brute
     #sub Check ↗️ first: dead end = ⬅️ Layout | continues = ➡️ Layout
     #sub edge found fast ⬇️ → North variant
     #sub edge found fast ⬆️ → South variant 
-    #sub {image|1_1_7_2 y_6|300} {image|1_1_7_2 y_8|250} {image|1_1_7_2 y_7|250} {image|1_1_7_2 y_9|250}
-    #sub {image|1_1_7_2 y_11|250} {image|1_1_7_2 y_13|250} {image|1_1_7_2 y_10|250} {image|1_1_7_2 y_12|250}
+    #sub {image|1_1_7_2 y_14|1100}
 
 #ifdef LEAGUE_START
     Find {generic|Chemist's Strongbox}
