@@ -7,6 +7,10 @@
     #sub Go {dir|0}
 
 ➞ {enter|2_10_2} #The Ravaged Square
+    #sub Blood Fountain South-East ↘️ of Entrance
+    #sub From Blood Fountain: Waypoint North-East ↗️
+    #sub Torched Courts South ⬇️ of WP
+    #sub Control Blocks South-West ↙️ of Blood Fountain
     #sub {image|2_10_2 y_1|600}
 
 Place {portal|set} at the Blood Fountain
@@ -83,7 +87,6 @@ Talk to {generic|Sin} ➞ {enter|2_10_town} #Oriath Docks
 Talk to {generic|Lilly Roth}, Set Sail from Oriath
 
 ➞ {enter|2_11_endgame_town} #Karui Shores
-    #sub {image|2_11_endgame_town y_1|600}
 
 Get {crafting}
 
