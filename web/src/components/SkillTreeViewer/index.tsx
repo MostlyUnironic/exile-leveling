@@ -1,18 +1,18 @@
+import { SkillTree } from "../../../../common/data/tree";
 import { TREE_DATA_LOOKUP } from "../../state/tree";
-import type { UrlTree } from "../../state/tree/url-tree";
+import { UrlTree } from "../../state/tree/url-tree";
 import { formStyles } from "../../styles";
 import { randomId } from "../../utility";
 import { SidebarTooltip } from "../SidebarTooltip";
-import { Viewport, type ViewportProps } from "../Viewport";
+import { Viewport, ViewportProps } from "../Viewport";
 import styles from "./styles.module.css";
 import {
-  type UrlTreeDelta,
+  UrlTreeDelta,
   buildUrlTreeDelta,
   calculateBounds,
 } from "./url-tree-delta";
 import classNames from "classnames";
-import type { SkillTree } from "common";
-import React, { type JSX } from "react";
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
@@ -59,7 +59,7 @@ export function SkillTreeViewer({ urlTrees }: SkillTreeViewerProps) {
       const urlTreeDelta = buildUrlTreeDelta(
         currentTree,
         previousTree,
-        skillTree,
+        skillTree
       );
 
       const bounds = calculateBounds(
@@ -67,7 +67,7 @@ export function SkillTreeViewer({ urlTrees }: SkillTreeViewerProps) {
         urlTreeDelta.nodesAdded,
         urlTreeDelta.nodesRemoved,
         nodes,
-        viewBox,
+        viewBox
       );
 
       const style = compiledStyle({
@@ -111,25 +111,20 @@ export function SkillTreeViewer({ urlTrees }: SkillTreeViewerProps) {
     if (svgDivRef.current === null) return;
     if (renderData === undefined) return;
 
-    const handleEnter = (ev: PointerEvent) => {
-      const target = ev.target as SVGElement | null;
-      if (target !== null && target.id.startsWith("n")) {
-        setTooltipNodeId(target.id.slice(1));
-      }
-    };
-    const handleLeave = (_ev: PointerEvent) => {
-      setTooltipNodeId(null);
-    };
+    for (const nodeId of Object.keys(renderData.nodes)) {
+      const element = svgDivRef.current.querySelector<SVGTitleElement>(
+        `#n${nodeId}`
+      );
+      if (element === null) continue;
 
-    svgDivRef.current.addEventListener("pointerover", handleEnter);
-    svgDivRef.current.addEventListener("pointerout", handleLeave);
+      element.addEventListener("pointerenter", () => {
+        setTooltipNodeId(nodeId);
+      });
 
-    return () => {
-      if (svgDivRef.current === null) return;
-
-      svgDivRef.current.removeEventListener("pointerover", handleEnter);
-      svgDivRef.current.removeEventListener("pointerout", handleLeave);
-    };
+      element.addEventListener("pointerleave", () => {
+        setTooltipNodeId(null);
+      });
+    }
   }, [svgDivRef, renderData]);
 
   return (
@@ -190,7 +185,6 @@ interface NodeTooltipProps {
   nodeId: keyof SkillTree.NodeLookup;
   masteries: Record<string, string>;
 }
-
 function NodeTooltip({
   skillTree,
   nodes,

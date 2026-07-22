@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  type Location,
-  type NavigateFunction,
-  type Params,
+  Location,
+  NavigateFunction,
+  Params,
   useLocation,
   useNavigate,
   useParams,

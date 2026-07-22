@@ -65,11 +65,6 @@
               "Templar"
             ]
           },
-          "Metadata/Items/Gems/SkillGemGlacialHammer": {
-            "classes": [
-              "Templar"
-            ]
-          },
           "Metadata/Items/Gems/SkillGemGroundSlam": {
             "classes": [
               "Marauder"
@@ -227,6 +222,12 @@
             ],
             "npc": "Nessa"
           },
+          "Metadata/Items/Gems/SupportGemElementalProliferation": {
+            "classes": [
+              "Templar"
+            ],
+            "npc": "Nessa"
+          },
           "Metadata/Items/Gems/SkillGemEtherealKnives": {
             "classes": [
               "Marauder",
@@ -304,23 +305,10 @@
             ],
             "npc": "Nessa"
           },
-          "Metadata/Items/Gems/SupportGemHallow": {
-            "classes": [
-              "Templar"
-            ],
-            "npc": "Nessa"
-          },
           "Metadata/Items/Gems/SkillGemHeavyStrike": {
             "classes": [
               "Duelist",
               "Marauder",
-              "Scion",
-              "Templar"
-            ],
-            "npc": "Nessa"
-          },
-          "Metadata/Items/Gems/SkillGemHolyStrike": {
-            "classes": [
               "Scion",
               "Templar"
             ],
@@ -542,15 +530,6 @@
             "classes": [
               "Scion",
               "Shadow",
-              "Witch",
-              "Templar"
-            ],
-            "npc": "Nessa"
-          },
-          "Metadata/Items/Gems/SupportGemHallow": {
-            "classes": [
-              "Marauder",
-              "Scion",
               "Witch"
             ],
             "npc": "Nessa"
@@ -656,7 +635,6 @@
           "Metadata/Items/Gems/SupportGemElementalProliferation": {
             "classes": [
               "Witch",
-              "Templar",
               "Shadow",
               "Scion"
             ]
@@ -1492,6 +1470,16 @@
             ],
             "npc": "Nessa"
           },
+          "Metadata/Items/Gems/SupportGemLesserMultipleProjectiles": {
+            "classes": [
+              "Duelist",
+              "Ranger",
+              "Scion",
+              "Shadow",
+              "Witch"
+            ],
+            "npc": "Nessa"
+          },
           "Metadata/Items/Gems/SupportGemLifeGainOnHit": {
             "classes": [
               "Duelist",
@@ -1544,16 +1532,6 @@
             "classes": [
               "Scion",
               "Templar",
-              "Witch"
-            ],
-            "npc": "Nessa"
-          },
-          "Metadata/Items/Gems/SupportGemLesserMultipleProjectiles": {
-            "classes": [
-              "Duelist",
-              "Ranger",
-              "Scion",
-              "Shadow",
               "Witch"
             ],
             "npc": "Nessa"
@@ -2271,14 +2249,6 @@
             ],
             "npc": "Nessa"
           },
-          "Metadata/Items/Gems/SkillGemSweep": {
-            "classes": [
-              "Duelist",
-              "Marauder",
-              "Templar"
-            ],
-            "npc": "Nessa"
-          },
           "Metadata/Items/Gems/SkillGemIceNova": {
             "classes": [
               "Scion",
@@ -2512,6 +2482,14 @@
             ],
             "npc": "Nessa"
           },
+          "Metadata/Items/Gems/SkillGemSweep": {
+            "classes": [
+              "Duelist",
+              "Marauder",
+              "Templar"
+            ],
+            "npc": "Nessa"
+          },
           "Metadata/Items/Gems/SkillGemToxicRain": {
             "classes": [
               "Duelist",
@@ -2691,11 +2669,6 @@
             ]
           },
           "Metadata/Items/Gems/SkillGemDivineRetribution": {
-            "classes": [
-              "Templar"
-            ]
-          },
-          "Metadata/Items/Gems/SkillGemShieldOfLight": {
             "classes": [
               "Templar"
             ]
@@ -3045,13 +3018,6 @@
             ],
             "npc": "Yeena"
           },
-          "Metadata/Items/Gems/SkillGemShieldOfLight": {
-            "classes": [
-              "Templar",
-              "Scion"
-            ],
-            "npc": "Yeena"
-          },
           "Metadata/Items/Gems/SkillGemSummonSkitterbots": {
             "classes": [
               "Ranger",
@@ -3258,11 +3224,6 @@
               "Marauder"
             ]
           },
-          "Metadata/Items/Gems/SupportGemExemplar": {
-            "classes": [
-              "Templar"
-            ]
-          },
           "Metadata/Items/Gems/SupportGemCloseCombat": {
             "classes": [
               "Marauder",
@@ -3433,14 +3394,6 @@
               "Marauder",
               "Scion",
               "Templar"
-            ],
-            "npc": "Yeena"
-          },
-          "Metadata/Items/Gems/SupportGemExemplar": {
-            "classes": [
-              "Scion",
-              "Templar",
-              "Witch"
             ],
             "npc": "Yeena"
           },
@@ -4501,11 +4454,6 @@
               "Templar"
             ]
           },
-          "Metadata/Items/Gems/SkillGemHolyHammers": {
-            "classes": [
-              "Templar"
-            ]
-          },
           "Metadata/Items/Gems/SkillGemDominatingBlow": {
             "classes": [
               "Templar"
@@ -4523,11 +4471,6 @@
             ]
           },
           "Metadata/Items/Gems/SkillGemPenanceBrand": {
-            "classes": [
-              "Templar"
-            ]
-          },
-          "Metadata/Items/Gems/SkillGemDivineBlast": {
             "classes": [
               "Templar"
             ]
@@ -4808,14 +4751,6 @@
           },
           "Metadata/Items/Gems/SkillGemDischarge": {
             "classes": [],
-            "npc": "Clarissa"
-          },
-          "Metadata/Items/Gems/SkillGemDivineBlast": {
-            "classes": [
-              "Marauder",
-              "Templar",
-              "Scion"
-            ],
             "npc": "Clarissa"
           },
           "Metadata/Items/Gems/SkillGemDivineTempest": {
@@ -5313,16 +5248,6 @@
               "Templar"
             ]
           },
-          "Metadata/Items/Gems/SupportGemBlessedCall": {
-            "classes": [
-              "Templar"
-            ]
-          },
-          "Metadata/Items/Gems/SupportGemExcommunicate": {
-            "classes": [
-              "Templar"
-            ]
-          },
           "Metadata/Items/Gems/SupportGemLifeLeech": {
             "classes": [
               "Marauder",
@@ -5604,10 +5529,6 @@
             "classes": [],
             "npc": "Siosa"
           },
-          "Metadata/Items/Gems/SupportGemBlessedCall": {
-            "classes": [],
-            "npc": "Siosa"
-          },
           "Metadata/Items/Gems/SkillGemBlight": {
             "classes": [],
             "npc": "Siosa"
@@ -5864,10 +5785,6 @@
             "classes": [],
             "npc": "Siosa"
           },
-          "Metadata/Items/Gems/SkillGemDivineBlast": {
-            "classes": [],
-            "npc": "Siosa"
-          },
           "Metadata/Items/Gems/SkillGemDivineTempest": {
             "classes": [],
             "npc": "Siosa"
@@ -5961,14 +5878,6 @@
             "npc": "Siosa"
           },
           "Metadata/Items/Gems/SkillGemEviscerate": {
-            "classes": [],
-            "npc": "Siosa"
-          },
-          "Metadata/Items/Gems/SupportGemExcommunicate": {
-            "classes": [],
-            "npc": "Siosa"
-          },
-          "Metadata/Items/Gems/SupportGemExemplar": {
             "classes": [],
             "npc": "Siosa"
           },
@@ -6160,10 +6069,6 @@
             "classes": [],
             "npc": "Siosa"
           },
-          "Metadata/Items/Gems/SupportGemHallow": {
-            "classes": [],
-            "npc": "Siosa"
-          },
           "Metadata/Items/Gems/SkillGemHaste": {
             "classes": [],
             "npc": "Siosa"
@@ -6205,14 +6110,6 @@
             "npc": "Siosa"
           },
           "Metadata/Items/Gems/SkillGemFlameTotem": {
-            "classes": [],
-            "npc": "Siosa"
-          },
-          "Metadata/Items/Gems/SkillGemHolyStrike": {
-            "classes": [],
-            "npc": "Siosa"
-          },
-          "Metadata/Items/Gems/SkillGemSweep": {
             "classes": [],
             "npc": "Siosa"
           },
@@ -6352,6 +6249,10 @@
             "classes": [],
             "npc": "Siosa"
           },
+          "Metadata/Items/Gems/SupportGemLesserMultipleProjectiles": {
+            "classes": [],
+            "npc": "Siosa"
+          },
           "Metadata/Items/Gems/SupportGemLifeGainOnHit": {
             "classes": [],
             "npc": "Siosa"
@@ -6465,10 +6366,6 @@
             "npc": "Siosa"
           },
           "Metadata/Items/Gems/SupportGemIncreasedDuration": {
-            "classes": [],
-            "npc": "Siosa"
-          },
-          "Metadata/Items/Gems/SupportGemLesserMultipleProjectiles": {
             "classes": [],
             "npc": "Siosa"
           },
@@ -6684,10 +6581,6 @@
             "classes": [],
             "npc": "Siosa"
           },
-          "Metadata/Items/Gems/SkillGemShieldOfLight": {
-            "classes": [],
-            "npc": "Siosa"
-          },
           "Metadata/Items/Gems/SkillGemShockNova": {
             "classes": [],
             "npc": "Siosa"
@@ -6837,6 +6730,10 @@
             "npc": "Siosa"
           },
           "Metadata/Items/Gems/SkillGemSunder": {
+            "classes": [],
+            "npc": "Siosa"
+          },
+          "Metadata/Items/Gems/SkillGemSweep": {
             "classes": [],
             "npc": "Siosa"
           },
@@ -8555,10 +8452,6 @@
             "classes": [],
             "npc": "Lilly Roth"
           },
-          "Metadata/Items/Gems/SupportGemBlessedCall": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
           "Metadata/Items/Gems/SkillGemBlight": {
             "classes": [],
             "npc": "Lilly Roth"
@@ -8843,10 +8736,6 @@
             "classes": [],
             "npc": "Lilly Roth"
           },
-          "Metadata/Items/Gems/SkillGemDivineBlast": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
           "Metadata/Items/Gems/SkillGemDivineTempest": {
             "classes": [],
             "npc": "Lilly Roth"
@@ -8936,14 +8825,6 @@
             "npc": "Lilly Roth"
           },
           "Metadata/Items/Gems/SkillGemEviscerate": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
-          "Metadata/Items/Gems/SupportGemExcommunicate": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
-          "Metadata/Items/Gems/SupportGemExemplar": {
             "classes": [],
             "npc": "Lilly Roth"
           },
@@ -9207,14 +9088,6 @@
             "classes": [],
             "npc": "Lilly Roth"
           },
-          "Metadata/Items/Gems/SkillGemHolyStrike": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
-          "Metadata/Items/Gems/SkillGemSweep": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
           "Metadata/Items/Gems/SkillGemHydrosphere": {
             "classes": [],
             "npc": "Lilly Roth"
@@ -9375,6 +9248,10 @@
             "classes": [],
             "npc": "Lilly Roth"
           },
+          "Metadata/Items/Gems/SupportGemLesserMultipleProjectiles": {
+            "classes": [],
+            "npc": "Lilly Roth"
+          },
           "Metadata/Items/Gems/SupportGemLifeGainOnHit": {
             "classes": [],
             "npc": "Lilly Roth"
@@ -9488,10 +9365,6 @@
             "npc": "Lilly Roth"
           },
           "Metadata/Items/Gems/SupportGemIncreasedDuration": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
-          "Metadata/Items/Gems/SupportGemLesserMultipleProjectiles": {
             "classes": [],
             "npc": "Lilly Roth"
           },
@@ -9715,10 +9588,6 @@
             "classes": [],
             "npc": "Lilly Roth"
           },
-          "Metadata/Items/Gems/SkillGemShieldOfLight": {
-            "classes": [],
-            "npc": "Lilly Roth"
-          },
           "Metadata/Items/Gems/SkillGemShockNova": {
             "classes": [],
             "npc": "Lilly Roth"
@@ -9912,6 +9781,10 @@
             "npc": "Lilly Roth"
           },
           "Metadata/Items/Gems/SkillGemSunder": {
+            "classes": [],
+            "npc": "Lilly Roth"
+          },
+          "Metadata/Items/Gems/SkillGemSweep": {
             "classes": [],
             "npc": "Lilly Roth"
           },
@@ -11123,7 +10996,16 @@
       "atlas": {
         "quest_npc": "Commander Kirac",
         "quest": {
-          "Metadata/Items/Maps/MapKeyTier1": {
+          "Metadata/Items/Maps/MapWorldsShipyard": {
+            "classes": []
+          },
+          "Metadata/Items/Maps/MapWorldsThicket": {
+            "classes": []
+          },
+          "Metadata/Items/Maps/MapWorldsBoneCrypt": {
+            "classes": []
+          },
+          "Metadata/Items/Maps/MapWorldsAcademy": {
             "classes": []
           }
         },
@@ -11135,43 +11017,6 @@
     "id": "ThreadsOfTheOriginator",
     "name": "Threads of the Originator",
     "act": "12",
-    "reward_offers": {
-      "memory_boss1": {
-        "quest_npc": "Eagon Caeserius",
-        "quest": {
-          "Metadata/Items/QuestItems/SkillBooks/AtlasSkillBookFirstMemoryBoss": {
-            "classes": []
-          }
-        },
-        "vendor": {}
-      },
-      "memory_boss2": {
-        "quest_npc": "Eagon Caeserius",
-        "quest": {
-          "Metadata/Items/QuestItems/SkillBooks/AtlasSkillBookSecondMemoryBoss": {
-            "classes": []
-          }
-        },
-        "vendor": {}
-      },
-      "memory_boss3": {
-        "quest_npc": "Eagon Caeserius",
-        "quest": {
-          "Metadata/Items/QuestItems/SkillBooks/AtlasSkillBookThirdMemoryBoss": {
-            "classes": []
-          }
-        },
-        "vendor": {}
-      },
-      "memory_astrolabe": {
-        "quest_npc": "Eagon Caeserius",
-        "quest": {
-          "Metadata/Items/Currency/AstrolabeGeneric": {
-            "classes": []
-          }
-        },
-        "vendor": {}
-      }
-    }
+    "reward_offers": {}
   }
 }

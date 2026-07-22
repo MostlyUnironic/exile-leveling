@@ -1,5 +1,5 @@
-import { Dat } from "../data/index.js";
-import type { GameData } from "common";
+import { GameData } from "../../../common/types";
+import { Dat } from "../data";
 
 const seedAreaIds = [
   // The Twilight Strand

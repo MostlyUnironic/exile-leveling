@@ -17,7 +17,7 @@ export function SelectList<T>({
 }: SelectListProps<T>) {
   return (
     <div className={classNames(styles.selectList)}>
-      {items.map((_item, i) => (
+      {items.map((item, i) => (
         <div
           key={i}
           className={classNames(

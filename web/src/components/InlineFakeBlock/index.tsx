@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import type { ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface InlineFakeBlockProps {
   child: ReactNode;

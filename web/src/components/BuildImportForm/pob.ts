@@ -1,6 +1,8 @@
-import { decodeBase64Url } from "../../utility";
-import { Data, type GameData, type RouteData } from "common";
-import { inflate } from "pako";
+import { Data } from "../../../../common/data";
+import { RouteData } from "../../../../common/route-processing/types";
+import { GameData } from "../../../../common/types";
+import { decodeBase64Url, randomId } from "../../utility";
+import pako from "pako";
 
 const GEM_ID_REMAP: Record<string, string> = {
   // POB is weird https://github.com/PathOfBuildingCommunity/PathOfBuilding/blob/0d3bdf009c8bc9579eb8cffb5548f03c45e57373/src/Export/Scripts/skills.lua#L504
@@ -38,7 +40,7 @@ function MapGemId(gemId: string) {
 }
 
 function decodePathOfBuildingCode(code: string) {
-  const buffer = inflate(decodeBase64Url(code));
+  const buffer = pako.inflate(decodeBase64Url(code));
 
   const decoder = new TextDecoder();
   const xmlString = decoder.decode(buffer);
@@ -60,7 +62,7 @@ function processSkills(
   gemLinks: RouteData.GemLinkGroup[],
   parentElement: Element,
   parentTitle: string | undefined,
-  characterClass: string,
+  characterClass: string
 ) {
   const skillElements = Array.from(parentElement.getElementsByTagName("Skill"));
 
@@ -81,7 +83,7 @@ function processSkills(
       if (attribute) {
         const gemId = MapGemId(attribute.value);
         const note = cleanPobText(
-          recentEmptySkillLabel || parentTitle || skillLabel || "",
+          recentEmptySkillLabel || parentTitle || skillLabel || ""
         );
         const gem: RouteData.RequiredGem = {
           id: gemId,
@@ -99,23 +101,23 @@ function processSkills(
     }
 
     const gemLinkTitle = cleanPobText(
-      parentTitle || recentEmptySkillLabel || "Default",
+      parentTitle || recentEmptySkillLabel || "Default"
     );
     if (primaryGemIds.length > 0)
       gemLinks.push({
         title: gemLinkTitle,
         primaryGems: primaryGemIds.map((x) =>
-          gemIdToGemLink(x, characterClass),
+          gemIdToGemLink(x, characterClass)
         ),
         secondaryGems: secondaryGemIds.map((x) =>
-          gemIdToGemLink(x, characterClass),
+          gemIdToGemLink(x, characterClass)
         ),
       });
     else if (secondaryGemIds.length > 0)
       gemLinks.push({
         title: gemLinkTitle,
         primaryGems: secondaryGemIds.map((x) =>
-          gemIdToGemLink(x, characterClass),
+          gemIdToGemLink(x, characterClass)
         ),
         secondaryGems: [],
       });
@@ -124,13 +126,13 @@ function processSkills(
 
 function gemIdToGemLink(
   gemId: GameData.Gem["id"],
-  characterClass: string,
+  characterClass: string
 ): RouteData.GemLink {
   const quests: RouteData.GemLink["quests"] = [];
   // TODO needing to loop over quests is annoying, ideally want to be able use relation queries, look into IndexedDB
   for (const quest of Object.values(Data.Quests)) {
     for (const [rewardOfferId, rewardOffer] of Object.entries(
-      quest.reward_offers,
+      quest.reward_offers
     )) {
       if (rewardOffer) {
         const vendor = rewardOffer.vendor[gemId];
@@ -157,12 +159,12 @@ export interface PobData {
   gemLinks: RouteData.GemLinkGroup[];
 }
 
-export function processPob(pobCode: string): PobData | null {
+export function processPob(pobCode: string): PobData | undefined {
   let doc;
   try {
     doc = decodePathOfBuildingCode(pobCode);
   } catch (e) {
-    return null;
+    return undefined;
   }
 
   const buildElement = Array.from(doc.getElementsByTagName("Build"));
@@ -183,7 +185,7 @@ export function processPob(pobCode: string): PobData | null {
         gemLinks,
         skillSetElement,
         skillSetElement.attributes.getNamedItem("title")?.value,
-        characterClass,
+        characterClass
       );
     }
   } else {
@@ -192,7 +194,7 @@ export function processPob(pobCode: string): PobData | null {
       gemLinks,
       doc.documentElement,
       undefined,
-      characterClass,
+      characterClass
     );
   }
 

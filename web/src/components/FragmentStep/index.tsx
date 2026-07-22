@@ -1,21 +1,32 @@
-import { useAtomValue } from "jotai";
+import { RouteData } from "../../../../common/route-processing/types";
 import { configSelector } from "../../state/config";
 import { SplitRow } from "../SplitRow";
 import { Fragment } from "./Fragment";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import type { RouteData } from "common";
-import React, { useState } from "react";
-import { BiInfoCircle, BiSolidInfoCircle } from "react-icons/bi";
-import flattenChildren from "react-keyed-flatten-children";
+import React, { useState, useEffect } from "react";
+import { BiImage, BiInfoCircle, BiSolidImage, BiSolidInfoCircle } from "react-icons/bi";
+import { useRecoilValue } from "recoil";
 
 interface StepProps {
   step: RouteData.FragmentStep;
+  isCompleted?: boolean;
 }
 
-export function FragmentStep({ step }: StepProps) {
-  const config = useAtomValue(configSelector);
-  const [showSubSteps, setShowSubSteps] = useState(config.showSubsteps);
+export function FragmentStep({ step, isCompleted = false }: StepProps) {
+  const config = useRecoilValue(configSelector);
+  const [showSubSteps, setShowSubSteps] = useState(
+    config.showSubsteps && step.subSteps.length > 0 && !isCompleted
+  );
+
+  // Collapse sub-steps when step is marked as completed, expand when toggled back
+  useEffect(() => {
+    if (isCompleted) {
+      setShowSubSteps(false);
+    } else {
+      setShowSubSteps(config.showSubsteps && step.subSteps.length > 0);
+    }
+  }, [isCompleted, config.showSubsteps, step.subSteps.length]);
 
   const headNodes: React.ReactNode[] = [];
   const tailNodes: React.ReactNode[] = [];
@@ -45,7 +56,27 @@ export function FragmentStep({ step }: StepProps) {
             <BiInfoCircle className={classNames("inlineIcon")} />
           )}
         </button>
-      </>,
+      </>
+    );
+  }
+
+  // Check if any sub-step contains image fragments
+  const hasImageInSubSteps = step.subSteps.some((subStep) =>
+    subStep.parts.some((part) => typeof part !== "string" && part.type === "image")
+  );
+
+  if (hasImageInSubSteps) {
+    headNodes.push(
+      <>
+        {" "}
+        <span className={classNames(styles.imageIndicator)}>
+          {isCompleted ? (
+            <BiImage  className={classNames("inlineIcon")} />
+          ) : (
+            <BiSolidImage className={classNames("inlineIcon")} />
+          )}
+        </span>
+      </>
     );
   }
 
@@ -53,22 +84,29 @@ export function FragmentStep({ step }: StepProps) {
     <>
       {headNodes.length > 0 && tailNodes.length > 0 ? (
         <SplitRow
-          left={flattenChildren(headNodes)}
-          right={flattenChildren(tailNodes)}
+          left={React.Children.toArray(headNodes)}
+          right={React.Children.toArray(tailNodes)}
         />
       ) : (
-        <span>{flattenChildren(headNodes)}</span>
+        <span>{React.Children.toArray(headNodes)}</span>
       )}
-      {showSubSteps && step.subSteps.length > 0 && (
+      {showSubSteps && (
         <>
           <hr />
-          {flattenChildren(
-            step.subSteps.map((x) => (
-              <span>
-                {"• "}
-                <FragmentStep step={x} />
-              </span>
-            )),
+          {React.Children.toArray(
+            step.subSteps.map((x) => {
+              // Don't show bullet for image-only sub-steps
+              const isImageOnly =
+                //x.parts.length === 1 &&
+                typeof x.parts[0] !== "string" &&
+                x.parts[0].type === "image";
+              return (
+                <span>
+                  {!isImageOnly && "• "}
+                  <FragmentStep step={x} isCompleted={false} />
+                </span>
+              );   
+            })
           )}
         </>
       )}

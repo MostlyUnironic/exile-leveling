@@ -59,7 +59,6 @@ Talk to {generic|Innocence}
     #sub {image|2_10_9 y_1|600}
     Get {crafting}
     Complete {trial}
-        #sub Interact with the switch just before the zig-zagging walls, go to the opposite side to access {generic|Hidden Gem: Facetor's Lens}
     {logout}
 #endif
 

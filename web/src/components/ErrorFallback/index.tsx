@@ -1,8 +1,8 @@
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import { type FallbackProps } from "react-error-boundary";
+import { FallbackProps } from "react-error-boundary";
 
-export function ErrorFallback({}: FallbackProps) {
+export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
     <span>
       {"Oops, something seems to have broken. Click "}

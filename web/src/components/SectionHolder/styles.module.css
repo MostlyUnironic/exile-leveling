@@ -1,6 +1,4 @@
 .sectionbar {
-  display: flex;
-  flex-direction: column;
   position: sticky;
   background-color: var(--primary);
   top: var(--navbar-height);
@@ -11,18 +9,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto;
-}
-
-.sectionbar > hr {
-  margin-top: auto;
 }
 
 .header {
   width: 100%;
   color: var(--on-secondary);
   font-size: var(--size-5);
-  padding: var(--size-1);
+  padding: var(--size-2);
   font-weight: var(--font-heavy);
   text-align: center;
   cursor: pointer;

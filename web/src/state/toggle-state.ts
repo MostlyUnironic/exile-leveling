@@ -1,58 +1,67 @@
-import type { Setter } from "jotai";
 import {
+  NO_MIGRATORS,
   clearPersistent,
   getPersistent,
-  NO_MIGRATORS,
   setPersistent,
 } from "../utility";
-import { atom, type WritableAtom } from "jotai";
-import { type AtomFamily } from "jotai-family";
-import { transientAtomFamily } from ".";
-
-type ClearableAtomFamily = AtomFamily<
-  string,
-  WritableAtom<boolean, [newValue: boolean], void>
-> & {
-  clear: WritableAtom<null, [], void>;
-};
+import {
+  RecoilState,
+  atomFamily,
+  selectorFamily,
+  useRecoilCallback,
+} from "recoil";
 
 export const buildToggleState = (
   version: number,
-  key: string,
-): ClearableAtomFamily => {
+  key: string
+): [
+  (param: string) => RecoilState<boolean>,
+  () => Iterable<string>,
+  () => () => void
+] => {
   const toggleState = new Set<string>(
-    getPersistent<string[]>(key, version, NO_MIGRATORS),
+    getPersistent<string[]>(key, version, NO_MIGRATORS)
   );
 
-  const refreshAtom = atom(0);
-  function refresh(set: Setter) {
-    set(refreshAtom, (prev) => prev + 1);
-  }
+  const toggleAtomFamily = atomFamily<boolean, string>({
+    key: `${key} toggleAtomFamily`,
+    default: (param) => toggleState.has(param),
+  });
 
-  const toggleFamily = transientAtomFamily((param: string) =>
-    atom(
-      (get) => {
-        get(refreshAtom);
-        return toggleState.has(param);
+  const toggleCollapsedSelectorFamily = selectorFamily<boolean, string>({
+    key: `${key} toggleCollapsedSelectorFamily`,
+    get:
+      (param) =>
+      ({ get }) => {
+        const toggleAtom = get(toggleAtomFamily(param));
+        return toggleAtom;
       },
-      (_get, set, newValue: boolean) => {
+    set:
+      (param) =>
+      ({ set }, newValue) => {
+        set(toggleAtomFamily(param), newValue);
+
         if (newValue) toggleState.add(param);
         else toggleState.delete(param);
 
         if (toggleState.size > 0) setPersistent(key, version, [...toggleState]);
         else clearPersistent(key);
-
-        refresh(set);
       },
-    ),
-  );
-
-  const clearAtom = atom(null, (_get, set) => {
-    toggleState.clear();
-    setPersistent(key, version, null);
-
-    refresh(set);
   });
 
-  return Object.assign(toggleFamily, { clear: clearAtom });
+  const toggleKeys = () => toggleState.keys();
+
+  const useClearToggle = () => {
+    return useRecoilCallback(
+      ({ set }) =>
+        () => {
+          for (const key of toggleState.keys()) {
+            set(toggleCollapsedSelectorFamily(key), false);
+          }
+        },
+      []
+    );
+  };
+
+  return [toggleCollapsedSelectorFamily, toggleKeys, useClearToggle];
 };

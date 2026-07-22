@@ -58,7 +58,6 @@ Hand in {quest|a9q5|a9q5_offer}, take {quest_text|Bottled Storm}
 
 #ifdef LEAGUE_START
     Before {waypoint}, complete {trial}
-        #sub Look for the hidden switch halfway to {generic|Trial of Ascendancy Plaque} in the corner opposite the entrance to access {generic|Hidden Gem: Transfigured}
     Get {crafting}
 #endif
 

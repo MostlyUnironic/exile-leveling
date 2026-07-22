@@ -1,8 +1,8 @@
-import { formStyles } from "../../styles";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
+import { formStyles } from "../../styles";
 
 ReactModal.setAppElement("#root");
 
@@ -23,7 +23,7 @@ export function Modal(props: ReactModal.Props & ModalSizeProps) {
 interface TextModalProps extends ModalSizeProps {
   label: string;
   isOpen: boolean;
-  onSubmit: (value: string | null) => void;
+  onSubmit: (value: string | undefined) => void;
   onRequestClose: () => void;
 }
 
@@ -34,10 +34,10 @@ export function TextModal({
   onRequestClose,
   size,
 }: TextModalProps) {
-  const valueRef = useRef<string>(null);
+  const valueRef = useRef<string>();
 
   useEffect(() => {
-    if (!isOpen) valueRef.current = null;
+    if (!isOpen) valueRef.current = undefined;
   }, [isOpen]);
 
   return (

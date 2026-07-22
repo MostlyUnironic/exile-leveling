@@ -1,6 +1,6 @@
-import type { ViewBox } from "../../state/tree/svg";
-import type { UrlTree } from "../../state/tree/url-tree";
-import type { SkillTree } from "common";
+import { SkillTree } from "../../../../common/data/tree";
+import { ViewBox } from "../../state/tree/svg";
+import { UrlTree } from "../../state/tree/url-tree";
 
 function intersection<T>(setA: Set<T>, setB: Set<T>) {
   const _intersection = new Set<T>();

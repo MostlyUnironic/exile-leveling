@@ -4,7 +4,7 @@
     #sub {image|1_5_1 y_1|600}
 
 Find and kill {kill|Overseer Krow}
-    #sub Go {dir|180} until you find the hanged Karui
+    #sub Go {dir|180} until you find the hanged Kauri
     #sub Loop around clockwise to go {dir|270}
 
 ➞ {enter|1_5_town} #Overseer's Tower

@@ -1,5 +1,5 @@
-import { Dat } from "../data/index.js";
-import type { GameData } from "common";
+import { GameData } from "../../../common/types";
+import { Dat } from "../data";
 
 const CHARACTER_CHEST_GEMS: Record<string, string> = {
   ["Marauder"]: "Metadata/Items/Gems/SupportGemRuthless",

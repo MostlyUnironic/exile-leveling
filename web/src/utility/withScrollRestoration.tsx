@@ -1,20 +1,22 @@
-import { atom, useAtom } from "jotai";
-import { atomFamily } from "jotai-family";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { atomFamily, useRecoilState } from "recoil";
 
-const scrollOffsetState = atomFamily((_param: string) => atom(0));
+const scrollOffsetState = atomFamily<number, string>({
+  key: "scrollOffsetState",
+  default: 0,
+});
 
 export function withScrollRestoration<P extends {}>(
-  Component: React.ComponentType<P>,
+  Component: React.ComponentType<P>
 ): React.ComponentType<P> {
   function ComponentWithScrollPosition(props: P) {
     const location = useLocation();
-    const [scrollOffset, setScrollOffset] = useAtom(
-      scrollOffsetState(location.pathname),
+    const [scrollOffset, setScrollOffset] = useRecoilState(
+      scrollOffsetState(location.pathname)
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       window.scrollTo(0, scrollOffset);
 
       function handleScroll() {
@@ -31,7 +33,7 @@ export function withScrollRestoration<P extends {}>(
     useEffect(() => {
       if (location.hash) {
         const element = document.getElementById(location.hash.replace("#", ""));
-        if (element) element.scrollIntoView({ behavior: "auto" });
+        if (element) element.scrollIntoView({ behavior: "smooth" });
       }
     }, [location]);
 

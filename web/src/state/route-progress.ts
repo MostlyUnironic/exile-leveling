@@ -1,9 +1,11 @@
 import { buildToggleState } from "./toggle-state";
 
 const ROUTE_PROGRESS_VERSION = 0;
-const routeProgressFamily = buildToggleState(
-  ROUTE_PROGRESS_VERSION,
-  "route-progress",
-);
+const [routeProgressSelectorFamily, routeProgressKeys, useClearRouteProgress] =
+  buildToggleState(ROUTE_PROGRESS_VERSION, "route-progress");
 
-export { routeProgressFamily };
+export {
+  routeProgressSelectorFamily,
+  routeProgressKeys,
+  useClearRouteProgress,
+};

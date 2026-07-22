@@ -1,4 +1,4 @@
-import type { SkillTree } from "common";
+import { SkillTree } from "../../../../common/data/tree";
 
 const PADDING = 550;
 
