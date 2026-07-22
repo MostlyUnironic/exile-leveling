@@ -1,11 +1,9 @@
-import { Data } from "../../../../../common/data";
-import { Fragments } from "../../../../../common/route-processing/fragment/types";
-import { GameData } from "../../../../../common/types";
 import { CopyToClipboard } from "../../CopyToClipboard";
 import { InlineFakeBlock } from "../../InlineFakeBlock";
 import { ItemReward } from "../../ItemReward";
 import styles from "./styles.module.css";
 import classNames from "classnames";
+import { Data, type Fragments, type GameData } from "common";
 import React from "react";
 import {
   BsArrowDownLeftSquare,
@@ -298,28 +296,23 @@ export function Fragment(
     case "dir":
       return [DirectionComponent(fragment.dirIndex), null];
     case "copy":
-      return [<CopyToClipboard text={fragment.text} />, null];
-    case "image":
-      return [ImageComponent(fragment.imagePath, fragment.width, fragment.height), null];    
+      let output: [React.ReactNode | null, React.ReactNode | null] = [
+        null,
+        null,
+      ];
+
+      const node = <CopyToClipboard text={fragment.text} />;
+      switch (fragment.side) {
+        case "head":
+          output[0] = node;
+          break;
+        case "tail":
+          output[1] = node;
+          break;
+      }
+
+      return output;
   }
 
   return [<>{`unmapped: ${JSON.stringify(fragment)}`}</>, null];
-}
-
-function ImageComponent(imagePath: string, width?: number, height?: number) {
-  const style: React.CSSProperties = {
-    objectFit: "contain",
-    verticalAlign: "top",
-  };
-  
-  if (width !== undefined) style.width = `${width}px`;
-  if (height !== undefined) style.height = `${height}px`;
-  
-  return (
-    <img
-      src={getImageUrl(imagePath)}
-      style={style}
-      alt=""
-    />
-  );
 }

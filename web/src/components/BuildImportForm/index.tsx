@@ -1,7 +1,10 @@
 import { formStyles } from "../../styles";
-import { UrlRewriter, fetchStringOrUrl, getRewriteUrl } from "../../utility";
+import {
+  type UrlRewriter,
+  fetchStringOrUrl,
+  getRewriteUrl,
+} from "../../utility";
 import { TextModal } from "../Modal";
-import { PobData, processPob } from "./pob";
 import classNames from "classnames";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -26,6 +29,12 @@ const URL_REWRITERS: UrlRewriter[] = [
     return `pobb.in/${match[1]}/raw`;
   },
   (url) => {
+    const match = /maxroll\.gg\/poe\/pob\/(.+)$/.exec(url);
+    if (!match) return null;
+
+    return `maxroll.gg/poe/api/pob/${match[1]}`;
+  },
+  (url) => {
     const match = /youtube.com\/redirect\?.+?q=(.+?)(?:&|$)/.exec(url);
     if (!match) return null;
     const redirectUrl = decodeURIComponent(match[1]);
@@ -35,7 +44,7 @@ const URL_REWRITERS: UrlRewriter[] = [
 ];
 
 interface BuildImportFormProps {
-  onSubmit: (pobData: PobData, pobCode: string) => void;
+  onSubmit: (pobCode: string) => void;
   onReset: () => void;
 }
 
@@ -55,19 +64,16 @@ export function BuildImportForm({ onSubmit, onReset }: BuildImportFormProps) {
               if (!pobCodeOrUrl) return Promise.reject("invalid pobCodeOrUrl");
               const pobCode = await fetchStringOrUrl(
                 pobCodeOrUrl,
-                URL_REWRITERS
+                URL_REWRITERS,
               );
 
-              const pobData = processPob(pobCode);
-              if (!pobData) return Promise.reject("parsing failed");
-
-              onSubmit(pobData, pobCode);
+              onSubmit(pobCode);
             },
             {
               pending: "Importing Build",
               success: "Import Success",
               error: "Import Failed",
-            }
+            },
           )
         }
       />
@@ -78,7 +84,7 @@ export function BuildImportForm({ onSubmit, onReset }: BuildImportFormProps) {
             onReset();
           }}
         >
-          Reset Build
+          Reset
         </button>
         <button
           className={classNames(formStyles.formButton)}

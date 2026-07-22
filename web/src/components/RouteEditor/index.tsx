@@ -1,19 +1,17 @@
-import {
-  buildRouteSource,
-  getRouteFiles,
-} from "../../../../common/route-processing";
-import { Language } from "../../../../common/route-processing/fragment/language";
-import { RouteData } from "../../../../common/route-processing/types";
 import { formStyles } from "../../styles";
-import { UrlRewriter, fetchStringOrUrl } from "../../utility";
+import { type UrlRewriter, fetchStringOrUrl } from "../../utility";
 import { Modal, TextModal } from "../Modal";
 import { Workspace } from "./Workspace";
 import styles from "./styles.module.css";
 import classNames from "classnames";
+import { buildRouteSource, getRouteFiles } from "common";
+import type { RouteData } from "common";
 import React from "react";
 import { useEffect, useState } from "react";
 import { BiHelpCircle } from "react-icons/bi";
+import flattenChildren from "react-keyed-flatten-children";
 import { toast } from "react-toastify";
+import { FragmentDescriptionLookup } from "../../../../common/src/route-processing/fragment/language";
 
 function cloneRouteFiles(routeFiles: RouteData.RouteFile[]) {
   return routeFiles.map((x) => ({ ...x }));
@@ -78,7 +76,7 @@ export function RouteEditor({
               if (!routeOrUrl) return;
               const routeSrc = await fetchStringOrUrl(
                 routeOrUrl,
-                URL_REWRITERS
+                URL_REWRITERS,
               );
 
               const routeFiles = getRouteFiles([routeSrc]);
@@ -88,7 +86,7 @@ export function RouteEditor({
               pending: "Importing Route",
               success: "Import Success",
               error: "Import Failed",
-            }
+            },
           )
         }
       />
@@ -159,7 +157,7 @@ export function RouteEditor({
 
 function HelpPage() {
   const fragmentDescriptions: React.ReactNode[] = Object.entries(
-    Language.FragmentDescriptionLookup
+    FragmentDescriptionLookup,
   ).map(([key, variants], i) => (
     <React.Fragment key={key}>
       {variants.map((variant, j) => (
@@ -193,7 +191,7 @@ function HelpPage() {
 
   return (
     <div className={classNames(styles.help)}>
-      {React.Children.toArray(fragmentDescriptions)}
+      {flattenChildren(fragmentDescriptions)}
     </div>
   );
 }

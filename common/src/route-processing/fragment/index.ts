@@ -1,10 +1,9 @@
-import { RouteState } from "..";
-import { Data } from "../../data";
-import { GameData } from "../../types";
-import { Pattern, matchPatterns } from "../patterns";
-import { ScopedLogger } from "../scoped-logger";
-import { Language } from "./language";
-import { Fragments } from "./types";
+import { Data } from "../../data.js";
+import type { Fragments, GameData } from "../../types.js";
+import { type RouteState } from "../index.js";
+import { type Pattern, matchPatterns } from "../patterns.js";
+import { ScopedLogger } from "../scoped-logger.js";
+import type { Language } from "./language.js";
 
 type RawFragment = string[];
 
@@ -12,7 +11,7 @@ const EvaluateLookup: Record<
   Language.Fragment,
   (
     rawFragment: RawFragment,
-    { state, logger }: ParseContext
+    { state, logger }: ParseContext,
   ) => string | EvaluateResult
 > = {
   ["kill"]: EvaluateKill,
@@ -75,8 +74,8 @@ const FRAGMENT_PATTERNS: Pattern<ParseContext>[] = [
 export function parseFragments(
   text: string,
   state: RouteState,
-  logger: ScopedLogger
-) {
+  logger: ScopedLogger,
+): Fragments.AnyFragment[] {
   const context: ParseContext = {
     state,
     fragments: [],
@@ -108,7 +107,7 @@ interface EvaluateResult {
 
 function EvaluateKill(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
   const bossName = rawFragment[1];
@@ -134,7 +133,7 @@ function EvaluateKill(
 
 function EvaluateArena(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
   return {
@@ -147,7 +146,7 @@ function EvaluateArena(
 
 function EvaluateArea(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
 
@@ -164,7 +163,7 @@ function EvaluateArea(
 
 function EvaluateEnter(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state, logger }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
 
@@ -186,7 +185,7 @@ function EvaluateEnter(
 
 function EvaluateLogout(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 1) return ERROR_INVALID_FORMAT;
 
@@ -204,7 +203,7 @@ function EvaluateLogout(
 
 function EvaluateWaypoint(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state, logger }: ParseContext,
 ): string | EvaluateResult {
   {
     if (rawFragment.length != 1 && rawFragment.length != 2)
@@ -246,7 +245,7 @@ function EvaluateWaypoint(
 
 function EvaluateGetWaypoint(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state, logger }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 1) return ERROR_INVALID_FORMAT;
 
@@ -267,7 +266,7 @@ function EvaluateGetWaypoint(
 
 function EvaluatePortal(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
 
@@ -315,7 +314,7 @@ function EvaluatePortal(
 
 function EvaluateQuestReward(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state, logger }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
 
@@ -333,7 +332,7 @@ function EvaluateQuestReward(
 
 function EvaluateVendorReward(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state, logger }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2 && rawFragment.length != 3)
     return ERROR_INVALID_FORMAT;
@@ -353,7 +352,7 @@ function EvaluateVendorReward(
 
 function EvaluateGeneric(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
   return {
@@ -366,7 +365,7 @@ function EvaluateGeneric(
 
 function EvaluateCrafting(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state, logger }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length > 2) return ERROR_INVALID_FORMAT;
 
@@ -393,7 +392,7 @@ function EvaluateCrafting(
 
 function EvaluateDirection(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
 
@@ -415,7 +414,7 @@ function EvaluateDirection(
 
 function EvaluateQuest(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   {
     if (rawFragment.length < 2) return ERROR_INVALID_FORMAT;
@@ -446,7 +445,7 @@ function EvaluateQuest(
 
 function EvaluateQuestText(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
   return {
@@ -459,7 +458,7 @@ function EvaluateQuestText(
 
 function EvaluateTrial(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 1) return ERROR_INVALID_FORMAT;
   return {
@@ -471,7 +470,7 @@ function EvaluateTrial(
 
 function EvaluateAscend(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  { state, logger }: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length != 2) return ERROR_INVALID_FORMAT;
 
@@ -496,7 +495,7 @@ function EvaluateAscend(
 
 function EvaluateCopy(
   rawFragment: RawFragment,
-  { state, logger }: ParseContext
+  {}: ParseContext,
 ): string | EvaluateResult {
   if (rawFragment.length <= 1) return ERROR_INVALID_FORMAT;
 
@@ -504,6 +503,7 @@ function EvaluateCopy(
     fragment: {
       type: "copy",
       text: rawFragment.slice(1).join(""),
+      side: "head",
     },
   };
 }

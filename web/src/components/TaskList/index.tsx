@@ -1,153 +1,82 @@
+import { useAtom } from "jotai";
 import { borderListStyles, interactiveStyles } from "../../styles";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import {
-  RecoilState,
-  useRecoilState,
-  useRecoilValue,
-  selector,
-} from "recoil";
-import { useEffect, useRef } from "react";
-import React, { useLayoutEffect } from "react";
-
-/* ---------------------------------- */
-/* TaskListItem                       */
-/* ---------------------------------- */
+import type { WritableAtom } from "jotai";
+import { FaRegCircle, FaRegPlayCircle } from "react-icons/fa";
+import { edgeId, nextEdgeAtom } from "../../state/route";
 
 interface TaskItemProps {
+  edgeIndex: number | null;
+  isCompletedState?: WritableAtom<boolean, [boolean], void>;
   children?: React.ReactNode;
-  isCompletedState?: RecoilState<boolean>;
-  itemRef?: (el: HTMLLIElement | null) => void;
 }
 
 function TaskListItem({
-  children,
+  edgeIndex,
   isCompletedState,
-  itemRef,
+  children,
 }: TaskItemProps) {
-  const liRef = useRef<HTMLLIElement | null>(null);
-
   const [isCompleted, setIsCompleted] = isCompletedState
-    ? useRecoilState(isCompletedState)
+    ? useAtom(isCompletedState)
     : [undefined, undefined];
 
-  // Scroll when THIS item is completed (used for direct completion)  
-  useLayoutEffect(() => {
-    if (!isCompleted || !liRef.current) return;
-
-    // Wait for DOM removal + layout settle
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        liRef.current!.scrollIntoView({
-          block: "start",
-          behavior: "smooth",
-        });
-      });
-    });
-  }, [isCompleted]);
+  const [nextEdge, setNextEdge] = useAtom(nextEdgeAtom(edgeIndex));
 
   return (
     <li
-      ref={(el) => {
-        liRef.current = el;
-        itemRef?.(el);
-      }}
+      id={edgeIndex !== null ? edgeId(edgeIndex) : undefined}
       tabIndex={0}
       className={classNames(
+        styles.listItem,
         borderListStyles.item,
         interactiveStyles.hoverPrimary,
-        styles.listItem,
         {
           [styles.completed]: isCompleted,
-        }
+        },
       )}
       onClick={() => {
         if (setIsCompleted) setIsCompleted(!isCompleted);
       }}
     >
-      {children}
+      <div className={classNames(styles.listItemInner)}>
+        {
+          <span
+            aria-hidden
+            className={classNames(styles.edgeTag)}
+            onClick={(ev) => {
+              setNextEdge();
+              ev.stopPropagation();
+            }}
+          >
+            <>
+              {nextEdge !== null && nextEdge && (
+                <FaRegPlayCircle size={"100%"} />
+              )}
+              {nextEdge !== null && !nextEdge && <FaRegCircle size={"100%"} />}
+            </>
+          </span>
+        }
+        {children}
+      </div>
     </li>
   );
 }
 
-/* ---------------------------------- */
-/* TaskList                           */
-/* ---------------------------------- */
-
 export interface TaskListProps {
-  items?: (TaskItemProps & { key?: React.Key })[];
+  items?: TaskItemProps[];
 }
 
 export function TaskList({ items }: TaskListProps) {
-  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
-  const prevCompletionStates = useRef<boolean[]>([]);
-
-  /**
-   * Selector to read all completion states legally
-   */
-  const completionStatesSelector = selector<boolean[]>({
-    key: "taskListCompletionStates",
-    get: ({ get }) =>
-      items?.map((item) =>
-        item.isCompletedState ? get(item.isCompletedState) : false
-      ) ?? [],
-  });
-
-  const completionStates = useRecoilValue(completionStatesSelector);
-
-  // Scroll to NEXT uncompleted item only if a task was actually completed
-  useEffect(() => {
-    // Check if any task was completed (changed from false to true)
-    const taskCompleted = completionStates.some((current, i) => 
-      current && !prevCompletionStates.current[i]
-    );
-
-    prevCompletionStates.current = completionStates;
-
-    if (!taskCompleted) return;
-
-    const nextIndex = completionStates.findIndex(
-      (completed) => !completed
-    );
-
-    if (nextIndex === -1) return;
-
-    const el = itemRefs.current[nextIndex];
-    if (!el) return;
-
-    const NAVBAR_OFFSET = 96; // navbar + section header height
-
-    const y =
-      el.getBoundingClientRect().top +
-      window.scrollY -
-      NAVBAR_OFFSET;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
-  }, [completionStates]);
-
   return (
     <ol className={classNames(styles.list)}>
       {items &&
-        items.map(({ key, children, ...rest }, i) => (
-          <TaskListItem
-            key={key || i}
-            {...rest}
-            itemRef={(el) => {
-              itemRefs.current[i] = el;
-            }}
-          >
-            <span
-              aria-hidden
-              className={classNames(styles.bullet)}
-            >
+        items.map(({ children, ...rest }, i) => (
+          <TaskListItem key={i} {...rest}>
+            <span aria-hidden className={classNames(styles.bullet)}>
               {`${i + 1}`.padStart(2, "0")}.
             </span>
-            <div className={classNames(styles.task)}>
-              {children}
-            </div>
+            <div className={classNames(styles.task)}>{children}</div>
           </TaskListItem>
         ))}
     </ol>

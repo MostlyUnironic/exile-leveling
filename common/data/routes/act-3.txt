@@ -1,232 +1,100 @@
 #section Act 3
 ➞ {enter|1_3_1} #The City of Sarn
-    #sub {image|1_3_1 y_1|200}
-
 Get {crafting}
 Help and talk to {generic|Clarissa}
-
 ➞ {enter|1_3_town} #The Sarn Encampment
-
 ➞ {enter|1_3_2} #The Slums
-    #sub {generic|West-facing entrance}:
-    #sub - Exit will be ↖️ North-West or ↗️ North-East
-    #sub {generic|East-facing entrance}: go ➡️ East until corner
-    #sub - If you walked along East wall → exit North ⬆️
-    #sub - If start allowed ↘️ South-East: Exit is in East ➡️ corner
-    #sub {image|1_3_2 y_1|500}
-
+    #sub Go {dir|0}
 ➞ {enter|1_3_3_1} #The Crematorium
-    #sub ⬅️ West first
-    #sub If dead end ➡️ East Variant
-    #sub If ⬇️ South open → ⬇️ South Variant
-    #sub {image|1_3_3_1 y_1|700}
-
+    #sub Follow Stairs
 #ifdef LEAGUE_START
     Complete {trial}
 #endif
-
 Find and kill {kill|Piety}, take {quest_text|Tolman's Bracelet}
-
 Get {crafting}
-
 {logout}
-
 Talk to {generic|Clarissa}, take {quest_text|Sewer Keys}
-
 Hand in {quest|a3q1} #Lost in Love
-
 ➞ {enter|1_3_2} #The Slums
     #sub Go {dir|0}
-
 ➞ {enter|1_3_10_1} #The Sewers
-    #sub After Waypoint:
-    #sub If Big room after WP → 3rd Bust ⬅️ West of Exit
-    #sub If 2nd Burst Small room → 3rd Bust ↘️ South-East dead end
-    #sub If Corridor behind Bust → 3rd Bust ↘️ South-East corner
-    #sub {image|1_3_10_1 y_1|700}
-
 Find 1x{quest_text|Platinum Bust}
-
 Get {waypoint_get}
-
 Find 2x{quest_text|Platinum Bust}
-
 ➞ {enter|1_3_5} #The Marketplace
-    #sub IF West ⬅️ = water → Zone extends ⬆️ North
-    #sub IF West ⬅️ ≠ water → Zone extends ⬅️ West
-    #sub Search for Arch → WP
-    #sub From WP:  Follow East wall ➡️ to Battlefront
-    #sub {image|1_3_5 y_1|800}
-
 Get {waypoint_get}
-
-➞ {enter|1_3_6} #The Catacombs
-    #sub Move ➡️ East first
-    #sub If ➡️ blocked → move ⬆️ North
-    #sub {image|1_3_6 y_1|700}
-    #sub Look around nearby
-
-Complete {trial}
-
-Get {crafting}
-
+#ifdef LEAGUE_START
+    ➞ {enter|1_3_6} #The Catacombs
+        #sub Look around nearby
+    Complete {trial}
+    Get {crafting}
+#endif
 {logout}
-
 Hand in {quest|a3q11} #Victario's Secrets
-
 {waypoint|1_3_5} #The Marketplace
-
 ➞ {enter|1_3_7} #The Battlefront
-    #sub Move ↖️ to find Waypoint
-    #sub After reaching Waypoint
-    #sub Docks exit = ⬆️ or ↖️ from Waypoint
-    #sub If ⬆️ hits edge quickly → move ➡️ to Docks
-    #sub Otherwise → Docks straight ⬆️
-    #sub {image|1_3_7 y_1|500}
-
+    #sub Search {dir|0}
 Get {waypoint_get}
     #sub Go {dir|315}
-
 Find and take {quest_text|Ribbon Spool}
     #sub Go {dir|225}
-
-➞ {enter|1_3_9} #The Docks
-    #sub South Variant → follow right wall ⬅️
-    #sub North Variant → follow left wall ➡️
-    #sub {image|1_3_9 y_1|500}
-
-Find and take {quest_text|Thaumetic Sulphite}
-
-{logout}
-
-{waypoint|1_3_7} #The Battlefront
-    #sub {image|1_3_7 y_1|500}
-
 ➞ {enter|1_3_8_1} #The Solaris Temple Level 1
-    #sub Walk forward until wall: If zone continues → keep forward
-    #sub If dead end → turn where zone extends
-    #sub Repeat until Waypoint 
-    #sub {waypoint} corner determines exit
-    #sub IF WP corner East ➡️ → Exit South-East ↘️
-    #sub IF WP corner West ⬅️ → Exit North ⬆️ Or ↖️ North-West
-    #sub {image|1_3_8_1 y_1|700}
-
-
+    #sub Go {dir|45}
 ➞ {enter|1_3_8_2} #The Solaris Temple Level 2
-    #sub Start → check West ⬅️ for skip
-    #sub Gap dashable → Small Skip ⬆️ North Variant
-    #sub Follow the Red Carpet
-    #sub {image|1_3_8_2 y_1|800}
-
-
 ➞ {arena|Eternal Laboratory}, get {crafting}
-
+{waypoint|1_3_7} #The Battlefront
+➞ {enter|1_3_9} #The Docks
+    #sub Go {dir|315}
+Find and take {quest_text|Thaumetic Sulphite}
+{logout}
+{waypoint|1_3_8_2} #The Solaris Temple Level 2
 Talk to {generic|Lady Dialla}
-
 Hand in {quest|a3q4} #The Ribbon Spool
-
 Hand in {quest|a3q5}, take {quest_text|Infernal Talc} #Fiery Dust
-
 {waypoint|1_3_10_1} #The Sewers
-
 Burn the {quest_text|Undying Blockage}
-
 Get {crafting}
-
 ➞ {enter|1_3_13} #The Ebony Barracks
-    #sub Move {dir|315}
-    #sub Imperial Gardens → always East of WP ➡️
-    #sub {image|1_3_13 y_1|200} {image|1_3_13 y_2|200}
-
 Get {waypoint_get}
-
 Kill {kill|General Gravicius}
     #sub Go {dir|315}
-
 ➞ {enter|1_3_14_1} #The Lunaris Temple Level 1
-    #sub Follow red carpet
-    #sub First door facing South ⬇️ → Exit North-East ↗️
-    #sub First door facing North ⬆️ → Exit North-West ↖️
-    #sub 
-    #sub Big room (rows of desks) → Carpet fork shows correct path
-    #sub {image|1_3_14_1 y_1|700}
-
 ➞ {enter|1_3_14_2} #The Lunaris Temple Level 2
-    #sub Part 1: #sub Avoid dead-end rooms: square, rectangle, double platform
-    #sub You can go clockwise our counterlclockwise, just always stick to the same Pattern.
-    #sub {image|1_3_14_2 y_1|900}
-    #sub Part 2: After 3rd staircase check wagons
-    #sub Side with ONE wagon = correct direction ➡️
-    #sub {image|1_3_14_2 y_2|900}
-
 Find and kill {kill|Piety}, take {quest_text|Tower Key}
     #sub Follow stairs that are going up
     #sub At the fork in the road with wagons, go the route with 1 wagon, not 2
-
 Get {crafting}
-
 {logout}
-
 Hand in {quest|a3q9} #Piety's Pets
-
 Hand in {quest|a3q8} #Sever the Right Hand
-
 {waypoint|1_3_13} #The Ebony Barracks
-    #sub Imperial Gardens → always East of WP ➡️
-    #sub {image|1_3_13 y_1|200} {image|1_3_13 y_2|200}
-
 ➞ {enter|1_3_15} #The Imperial Gardens
-    #sub Entrance → follow road → WP
-    #sub From WP: Road ↖️ → Library
-    #sub Trial location → Always in North corner ⬆️
-    #sub {image|1_3_15 y_1|600}
-
+    #sub Go {dir|45}
 Get {waypoint_get}
     #sub Follow the road
-
-➞ {enter|1_3_17_1} #The Library
-    
-Get {waypoint_get}
-
-Find {generic|Loose Candle} ➞ {enter|1_3_17_2} #The Archives
-    #sub Traverse the Zone Clockwise
-    #sub {image|1_3_17_1 y_1|200} {image|1_3_17_1 y_2|200}
-
-Get {crafting}
-    #sub Look for a candle in a narrow corridor
-
-Find 4x{quest_text|Golden Page}
-
-{logout}
-
-{waypoint|1_3_17_1} #The Library
-    #sub Put currency needed to buy skill gems in inventory
-
-Hand in {quest|a3q12} #A Fixture of Fate
-
-{waypoint|1_3_15} #The Imperial Gardens
-    #sub Entrance → follow road → WP
-    #sub From WP: Road ↖️ → Library
-    #sub Trial location → Always in North corner ⬆️
-    #sub {image|1_3_15 y_1|600}
-
-Complete {trial}
-    #sub Go {dir|0}
-Get {crafting}
-{logout}
-
-{waypoint|1_3_15} #The Imperial Gardens
-    #sub Entrance → follow road → WP
-    #sub From WP: Road ↖️ → Library
-    #sub Trial location → Always in North corner ⬆️
-    #sub {image|1_3_15 y_1|600}
-
+#ifdef LEAGUE_START
+    Complete {trial}
+        #sub Go {dir|0}
+    Get {crafting}
+    {logout}
+    {waypoint|1_3_15} #The Imperial Gardens
+#endif
+#ifdef LIBRARY
+    ➞ {enter|1_3_17_1} #The Library
+        #sub Go {dir|315}
+    Get {waypoint_get}
+    Find {generic|Loose Candle} ➞ {enter|1_3_17_2} #The Archives
+        #sub Look for a candle in a narrow corridor
+    Get {crafting}
+    Find 4x{quest_text|Golden Page}
+    {logout}
+    {waypoint|1_3_17_1} #The Library
+        #sub Put currency needed to buy skill gems in inventory
+    Hand in {quest|a3q12} #A Fixture of Fate
+    {waypoint|1_3_15} #The Imperial Gardens
+#endif
 ➞ {enter|1_3_18_1} #The Sceptre of God
-    #sub Stay in inner square
-    #sub Traverse zone clockwise
-
 ➞ {enter|1_3_18_2} #The Upper Sceptre of God
     #sub Stairs spawn in one of the corners
-
 ➞ {arena|Tower Rooftop}, Kill {kill|Dominus, High Templar}
     #sub Look for barricades

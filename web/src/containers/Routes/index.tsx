@@ -1,108 +1,66 @@
+import { useAtom, useAtomValue } from "jotai";
 import { FragmentStep } from "../../components/FragmentStep";
 import { GemReward } from "../../components/ItemReward";
 import { SectionHolder } from "../../components/SectionHolder";
 import { Sidebar } from "../../components/Sidebar";
-import { TaskListProps } from "../../components/TaskList";
-import { gemProgressSelectorFamily } from "../../state/gem-progress";
-import { routeSelector } from "../../state/route";
-import { routeProgressSelectorFamily } from "../../state/route-progress";
-import { ReactNode } from "react";
-import { useCallback, useEffect } from "react";
-import { useRecoilCallback, useRecoilValue } from "recoil";
+import type { TaskListProps } from "../../components/TaskList";
+import { gemProgressFamily } from "../../state/gem-progress";
+import { routeSelector, scrollToActiveEdgeEffect } from "../../state/route";
+import { routeProgressFamily } from "../../state/route-progress";
+import { useMemo, type ReactNode } from "react";
 
 export default function RoutesContainer() {
-  const route = useRecoilValue(routeSelector);
+  useAtom(scrollToActiveEdgeEffect);
+  const route = useAtomValue(routeSelector);
 
-  // Keyboard shortcut to complete next step sequentially
-  const completeNextStep = useRecoilCallback(
-    ({ snapshot, set }) =>
-      async () => {
-        for (let sectionIndex = 0; sectionIndex < route.length; sectionIndex++) {
-          const section = route[sectionIndex];
-          for (let stepIndex = 0; stepIndex < section.steps.length; stepIndex++) {
-            const step = section.steps[stepIndex];
-            
-            if (step.type === "fragment_step") {
-              const completionState = routeProgressSelectorFamily(
-                [sectionIndex, stepIndex].toString()
-              );
-              const isCompleted = await snapshot.getPromise(completionState);
-              
-              if (!isCompleted) {
-                set(completionState, true);
-                return; // Stop after completing the first incomplete step
-              }
-            } else if (step.type === "gem_step") {
-              const completionState = gemProgressSelectorFamily(step.requiredGem.id);
-              const isCompleted = await snapshot.getPromise(completionState);
-              
-              if (!isCompleted) {
-                set(completionState, true);
-                return; // Stop after completing the first incomplete step
-              }
-            }
-          }
-        }
-      },
-    [route]
-  );
+  const items = useMemo(() => {
+    const items: ReactNode[] = [];
+    for (
+      let sectionIndex = 0;
+      sectionIndex < route.sections.length;
+      sectionIndex++
+    ) {
+      const section = route.sections[sectionIndex];
 
-  // Keyboard event listener
-  const handleKeyPress = useCallback(
-    (event: KeyboardEvent) => {
-      // Use Space key to complete next step
-      if (event.code === "Space" && !event.ctrlKey && !event.altKey && !event.metaKey) {
-        event.preventDefault();
-        completeNextStep();
-      }
-    },
-    [completeNextStep]
-  );
+      let taskItems: TaskListProps["items"] = [];
+      for (let stepIndex = 0; stepIndex < section.steps.length; stepIndex++) {
+        const step = section.steps[stepIndex];
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyPress);
-    return () => document.removeEventListener("keydown", handleKeyPress);
-  }, [handleKeyPress]);
+        if (step.type == "fragment_step")
+          taskItems.push({
+            edgeIndex: step.edgeIndex,
+            isCompletedState: routeProgressFamily(
+              [sectionIndex, stepIndex].toString(),
+            ),
+            children: <FragmentStep key={stepIndex} step={step} />,
+          });
 
-  const items: ReactNode[] = [];
-  for (let sectionIndex = 0; sectionIndex < route.length; sectionIndex++) {
-    const section = route[sectionIndex];
-
-    let taskItems: TaskListProps["items"] = [];
-    for (let stepIndex = 0; stepIndex < section.steps.length; stepIndex++) {
-      const step = section.steps[stepIndex];
-
-      if (step.type == "fragment_step") {
-        const completionState = routeProgressSelectorFamily(
-          [sectionIndex, stepIndex].toString()
-        );
-        const isCompleted = useRecoilValue(completionState);
-        taskItems.push({
-          key: stepIndex,
-          isCompletedState: completionState,
-          children: <FragmentStep key={stepIndex} step={step} isCompleted={isCompleted} />,
-        });
+        if (step.type == "gem_step")
+          taskItems.push({
+            edgeIndex: null,
+            isCompletedState: gemProgressFamily(step.requiredGem.id),
+            children: (
+              <GemReward
+                key={taskItems.length}
+                requiredGem={step.requiredGem}
+                count={step.count}
+                rewardType={step.rewardType}
+              />
+            ),
+          });
       }
 
-      if (step.type == "gem_step")
-        taskItems.push({
-          key: step.requiredGem.id,
-          isCompletedState: gemProgressSelectorFamily(step.requiredGem.id),
-          children: (
-            <GemReward
-              key={taskItems.length}
-              requiredGem={step.requiredGem}
-              count={step.count}
-              rewardType={step.rewardType}
-            />
-          ),
-        });
+      items.push(
+        <SectionHolder
+          key={sectionIndex}
+          name={section.name}
+          items={taskItems}
+        />,
+      );
     }
 
-    items.push(
-      <SectionHolder key={sectionIndex} name={section.name} items={taskItems} />
-    );
-  }
+    return items;
+  }, [route]);
 
   return (
     <>

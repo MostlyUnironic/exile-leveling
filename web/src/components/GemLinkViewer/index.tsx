@@ -1,18 +1,15 @@
-import { Data } from "../../../../common/data";
-import { RouteData } from "../../../../common/route-processing/types";
-import { GameData } from "../../../../common/types";
 import { formStyles } from "../../styles";
 import { GemCost } from "../GemCost";
 import { InlineFakeBlock } from "../InlineFakeBlock";
 import { SidebarTooltip } from "../SidebarTooltip";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import React from "react";
+import { Data, type RouteData } from "common";
+import React, { type JSX } from "react";
 import { useEffect, useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { MdCircle } from "react-icons/md";
-import { gemProgressSelectorFamily } from "../../state/gem-progress";
-import { useRecoilState } from "recoil";
+import flattenChildren from "react-keyed-flatten-children";
 
 interface GemLinkViewerProps {
   gemLinks: RouteData.GemLinkGroup[];
@@ -67,12 +64,12 @@ export function GemLinkViewer({ gemLinks }: GemLinkViewerProps) {
       </div>
       {activeGemLinks.length > 0 && (
         <div className={classNames(styles.gemLinkSection)}>
-          {React.Children.toArray(
+          {flattenChildren(
             activeGemLinks.map(({ primaryGems, secondaryGems }, i) => (
               <>
                 {i !== 0 && <hr />}
                 <div className={classNames(styles.gemLinkRow)}>
-                  {React.Children.toArray(
+                  {flattenChildren(
                     primaryGems.map((gem) => (
                       <GemLink
                         gemLink={gem}
@@ -81,7 +78,7 @@ export function GemLinkViewer({ gemLinks }: GemLinkViewerProps) {
                       />
                     ))
                   )}
-                  {React.Children.toArray(
+                  {flattenChildren(
                     secondaryGems.map((gem) => (
                       <GemLink
                         gemLink={gem}
@@ -108,26 +105,15 @@ interface GemLinkProps {
 
 function GemLink({ gemLink, isPrimary, onTooltip }: GemLinkProps) {
   const gem = Data.Gems[gemLink.id];
-  const [isCompleted, setIsCompleted] = useRecoilState(
-    gemProgressSelectorFamily(gemLink.id)
-  );
-
   return (
     <div
-      className={classNames(
-        isPrimary ? styles.gemPrimary : styles.gemSecondary,
-        { [styles.completed]: isCompleted }
-      )}
+      className={isPrimary ? styles.gemPrimary : styles.gemSecondary}
       onPointerEnter={() => {
         onTooltip(gemLink);
       }}
       onPointerLeave={() => {
         onTooltip(null);
       }}
-      onClick={() => {
-        setIsCompleted(!isCompleted);
-      }}
-      tabIndex={0}
     >
       <MdCircle
         color={Data.GemColours[gem.primary_attribute]}
@@ -165,13 +151,14 @@ function GemTooltip({ gemLink }: GemTooltipProps) {
           const quest = Data.Quests[x.questId];
           const npc = quest.reward_offers[x.rewardOfferId]?.vendor[gem.id]?.npc;
           const text = (
-            <>
+            <React.Fragment key={i}>
               {i !== 0 && <hr className={classNames(styles.questSeperator)} />}
               <span>{quest.name}</span>
               <span>{npc}</span>
               <span>Act {quest.act}</span>
-            </>
+            </React.Fragment>
           );
+
           return text;
         })}
       </div>

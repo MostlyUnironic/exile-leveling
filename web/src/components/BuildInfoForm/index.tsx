@@ -1,7 +1,7 @@
-import { RouteData } from "../../../../common/route-processing/types";
 import { SplitRow } from "../SplitRow";
 import styles from "./styles.module.css";
 import classNames from "classnames";
+import type { RouteData } from "common";
 
 interface BuildInfoFormProps {
   buildData: RouteData.BuildData;

@@ -1,12 +1,11 @@
-import { Data } from "../../../../common/data";
-import { RouteData } from "../../../../common/route-processing/types";
 import { CopyToClipboard } from "../CopyToClipboard";
 import { GemCost } from "../GemCost";
 import { InlineFakeBlock } from "../InlineFakeBlock";
 import { SplitRow } from "../SplitRow";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import { ReactNode } from "react";
+import { Data, type RouteData } from "common";
+import type { ReactNode } from "react";
 import { MdCircle } from "react-icons/md";
 
 function ItemRewardVerb(type: ItemRewardProps["rewardType"]) {
