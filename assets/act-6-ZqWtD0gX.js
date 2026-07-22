@@ -1,0 +1,131 @@
+const n=`#section Act 6
+➞ {enter|2_6_town} #Lioneye's Watch
+
+➞ {enter|2_6_2} #The Coast
+    #sub {image|1_1_2 y_12|600}
+
+➞ {enter|2_6_4} #The Mud Flats
+    #sub {image|2_6_4 y_1|600}
+
+Find and kill {kill|The Dishonoured Queen}, take {quest_text|Eye of Conquest}
+    #sub {dir|45} corner of area, normally by a house
+
+➞ {enter|2_6_5} #The Karui Fortress
+    #sub {image|2_6_5 y_1|300}
+
+➞ {arena|Tukohama's Keep}, kill {kill|Tukohama, Karui God of War}
+
+Get {crafting}
+
+➞ {enter|2_6_6} #The Ridge
+    #sub {image|2_6_6 y_1|800}
+    #sub Go {dir|0}
+
+{waypoint_get}
+
+{portal|use}
+
+➞ {enter|2_6_1} #The Twilight Strand
+
+Kill {kill|Everything}
+
+{logout}
+
+Hand in {quest|a6q4} #Fallen from Grace
+
+➞ {enter|2_6_7_1} #The Lower Prison
+    #sub Follow Right Wall from WP ➡️ to Trial
+    #sub After Trial: backtrack to Exit ⬅️ or continue Right Wall ➡️
+    #sub {image|2_6_7_1 y_1|900}
+
+#ifdef LEAGUE_START
+    Complete {trial}
+#endif
+
+Get {crafting}
+
+➞ {enter|2_6_7_2} #Shavronne's Tower
+    #sub Follow the Left Wall from the Entrance of each Floor
+
+➞ {arena|Prison Rooftop}, kill {kill|Shavronne the Returned} & {kill|Reassembled Brutus}
+
+➞ {arena|The Warden's Chambers}
+
+Get {crafting}
+
+➞ {enter|2_6_8} #Prisoner's Gate
+    #sub Follow Road ➡️ to Exit to Western Forest
+    #sub Abberath Arena in Sidezone behind Ledge ⬅️
+    #sub {image|2_6_8 y_1|600}
+
+➞ {arena|Valley of the Fire Drinker}, kill {kill|Abberath, the Cloven One}
+    #sub Go down the ledge next to the road
+
+➞ {enter|2_6_8} #Prisoner's Gate
+    #sub {image|2_6_8 y_1|600}
+
+➞ {enter|2_6_9} #The Western Forest
+    #sub Follow the road
+    #sub {image|2_6_9 y_1|200}
+
+Get {crafting}
+    #sub Look for the torch touching the road
+    #sub Follow the trail in the direction of the torch
+
+➞ {enter|2_6_10} #The Riverways
+    #sub Follow the road
+    #sub From WP, follow Pebble Path to Wetlands
+    #sub At blockage, move South ⬇️ to Exit to Southern Forest
+    #sub {image|2_6_10 y_1|400}
+
+Get {waypoint_get}
+    #sub Follow the road
+
+➞ {enter|2_6_11} #The Wetlands
+    #sub Follow Left Wall ⬅️ to Boss Arena Entrance
+    #sub {image|2_6_11 y_1|600}
+    
+
+➞ {arena|The Spawning Ground}, kill {kill|Ryslatha, the Puppet Mistress}
+    #sub Go {dir|315}
+
+{logout}
+
+Hand in {quest|a6q7} #The Cloven One
+Hand in {quest|a6q3} #The Father of War
+Hand in {quest|a6q2} #Essence of Umbra
+Hand in {quest|a6q6} #The Puppet Mistress
+
+{waypoint|2_6_10} #The Riverways
+    #sub {image|2_6_10 y_1|400}
+
+➞ {enter|2_6_12} #The Southern Forest
+    #sub Move East ➡️ to Big Wall at East Edge
+    #sub Move South ⬇️
+    #sub {image|2_6_12 y_1|400}
+
+➞ {enter|2_6_13} #The Cavern of Anger
+    #sub Follow East Edge ➡️
+    #sub {image|2_6_13 y_1|500}
+
+Take {quest_text|The Black Flag}
+
+➞ {enter|2_6_14} #The Beacon
+    #sub {image|2_6_14 y_1|300}
+
+Get {crafting}
+    #sub Follow the shore
+
+Complete {quest_text|Pillar Push}
+
+Light the {quest_text|Beacon}, throw in {quest_text|The Black Flag}
+
+Talk to {generic|Weylam Roth}, sail to {enter|2_6_15} #The Brine King's Reef
+    #sub Follow East Edge ➡️
+    #sub {image|2_6_15 y_1|600}
+
+➞ {arena|The Bring King's Throne}, kill {kill|Tsoagoth, The Brine King}
+
+{logout}
+
+Select {generic|Pantheons}`;export{n as default};

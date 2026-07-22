@@ -1,0 +1,153 @@
+const n=`#section Act 8
+➞ {enter|2_8_1} #The Sarn Ramparts
+Get {waypoint_get}
+
+➞ {enter|2_8_town} #The Sarn encampment
+
+➞ {enter|2_8_2_1} #The Toxic Conduits
+
+➞ {enter|2_8_2_2} #Doedre's Cesspool
+    #sub {image|2_8_2_2 y_1|600}
+    #sub Black splashes of paint on ground points to the right direction to go
+
+➞ {arena|The Cauldron}, kill {kill|Doedre the Vile}
+
+➞ {arena|Sewer Outlet}
+
+Get {crafting}
+
+➞ {enter|2_8_8} #The Quay
+    #sub Follow Left Edge (Waterside) from Start ⬅️
+    #sub {image|2_8_8 y_1|800}
+    
+
+Find and take {quest_text|Ankh of Eternity}
+    #sub Follow {dir|270} wall
+
+➞ {arena|Resurrection Site}
+
+Talk to {generic|Clarissa}, kill {kill|Tolman}
+
+➞ {enter|2_8_9} #The Grain Gate
+    #sub If entering West of WP: first Passage North ⬆️ of WP
+    #sub Hidden Underbelly + Gemling Legion in Zone 2
+    #sub If entering South of WP: first Passage West ⬅️ of WP
+    #sub Hidden Underbelly in Zone 2
+    #sub Gemling Legion marked by Book Icon on Minimap
+    #sub {image|2_8_9 y_1|800}
+
+Find and kill {kill|Gemling Legionnaires}
+    #sub Follow the dead guards by doorways
+    #sub Look for a book icon
+
+➞ {enter|2_8_14} #Hidden Underbelly
+    #sub From Start: follow West Edge ⬅️ heading South ⬇️
+    #sub If Curved Tunnel West ⬅️: split ahead
+    #sub -- Solaris Concourse Entrance North ⬆️
+    #sub -- Bathhouse Entrance South ⬇️
+    #sub If Curved Tunnel South ⬇️ of start
+    #sub -- Solaris Concourse Entrance South ⬇️
+    #sub -- Bathhouse Entrance East ➡️
+    #sub {image|2_8_14 y_1|600}
+
+Place {portal|set} at the T Section
+
+➞ {enter|2_8_11} #The Solaris Concourse
+    #sub If massive Wall: blink over ⬆️ then move North ⬆️ to Exit
+    #sub If Edge (Housewall): backtrack ⬅️ until path North ⬆️
+    #sub Move North ⬆️ to Solaris Temple Entrance
+    #sub If neither found: move North ⬆️ to Ledge
+    #sub {image|2_8_11 y_1|600}
+
+➞ {enter|2_8_12_1} #The Solaris Temple Level 1
+    #sub {image|2_8_12_1 y_1|600}
+    #sub Follow the road until {waypoint}
+    #sub Go {dir|315}
+
+Get {waypoint_get}
+
+{waypoint|2_8_town} #The Sarn encampment
+
+{portal|use}
+
+➞ {enter|2_8_5} #The Bath House
+    #sub {image|2_8_5 y_1|800}
+
+Place {portal|set}
+
+➞ {enter|2_8_6} #The Lunaris Concourse
+    #sub {image|2_8_6 y_1|600}
+
+Get {waypoint_get}
+    #sub Go {dir|315}
+
+{waypoint|2_8_town} #The Sarn encampment
+
+{portal|use}
+
+#ifdef LEAGUE_START
+    Complete {trial}
+        #sub Search {dir|270} side
+    Get {crafting}
+#endif
+
+➞ {enter|2_8_4} #The High Gardens
+    #sub Follow the Zone
+
+➞ {arena|The Pools of Terror}, kill {kill|Yugul, Reflection of Terror}
+
+{logout}
+
+Hand in {quest|a8q4} #Reflection of Terror
+Hand in {quest|a8q1} #Essence of the Hag
+Hand in {quest|a8q7} #The Gemling Legion
+Hand in {quest|a8q6} #Love is Dead
+
+{waypoint|2_8_12_1} #The Solaris Temple Level 1
+
+➞ {enter|2_8_12_2} #The Solaris Temple Level 2
+    #sub {image|2_8_12_2 y_1|600}
+
+Find and kill {kill|Dawn, Harbinger of Solaris}, take {quest_text|Sun Orb}
+
+Get {crafting}
+
+{logout}
+
+{waypoint|2_8_6} #The Lunaris Concourse
+
+➞ {enter|2_8_7_1_} #The Lunaris Temple Level 1
+    #sub Follow the Carpet
+    #sub {image|2_8_7_1_ y_1|600}
+
+➞ {enter|2_8_7_2} #The Lunaris Temple Level 2
+    #sub Go clockwise our counterlclockwise, just always stick to the same Pattern.
+    #sub {image|2_8_7_2 y_1|800}
+
+Find and kill {kill|Dusk, Harbinger of Lunaris}, take {quest_text|Moon Orb}
+
+Get {crafting}
+
+{logout}
+
+{waypoint|2_8_6} #The Lunaris Concourse
+
+➞ {enter|2_8_13} #The Harbour Bridge
+    #sub {image|2_8_13 y_1|300}
+
+➞ {arena|The Sky Shrine}, activate {generic|Statue of the Sisters}
+Kill {kill|Lunaris, Eternal Moon} & {kill|Solaris, Eternal Sun}
+
+
+
+
+
+
+
+
+
+
+    
+
+
+`;export{n as default};

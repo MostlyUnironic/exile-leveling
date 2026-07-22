@@ -1,0 +1,124 @@
+const n=`#section Act 4
+➞ {enter|1_4_1} #The Aqueduct
+    #sub straight {dir|315}
+
+➞ {enter|1_4_town} #Highgate
+
+➞ {enter|1_4_2} #The Dried Lake
+    #sub Follow Book icon
+    #sub Check West ⬅️ wall at spawn
+    #sub Long passage → go ⬅️
+    #sub Open zone + big hole ↘️ blocked → go ⬇️
+    #sub Open zone (no hole / no long passage)
+    #sub Move ↘️
+    #sub {image|1_4_2 y_1|400}
+
+Find and kill {kill|Voll, Emperor of Purity}, take {quest_text|Deshret's Banner}
+
+Get {crafting}
+
+{logout}
+
+Break {quest_text|Deshret's Seal}
+
+Hand in {quest|a4q2} #Breaking the Seal
+
+➞ {enter|1_4_3_1} #The Mines Level 1
+    #sub If you can move North-West, otherwise follow the Zone.
+    #sub {image|1_4_3_1 y_1|300}
+
+Get {crafting}
+
+➞ {enter|1_4_3_2} #The Mines Level 2
+    #sub {image|1_4_3_2 y_1|500}
+
+Free {quest_text|Deshret}
+
+➞ {enter|1_4_3_3} #The Crystal Veins
+    #sub Stick to the opposite Edge of the Direction the first Passage takes.
+    #sub {image|1_4_3_3 y_1|600}
+
+Get {crafting}
+
+{waypoint|1_4_town} #Highgate
+
+Hand in {quest|a4q6} #An Indomitable Spirit
+
+{waypoint|1_3_town} #The Sarn Encampment
+
+➞ {enter|Labyrinth_Airlock}, get {waypoint_get} #Aspirants' Plaza
+    
+{ascend|normal}
+
+Get {crafting|1_Labyrinth_boss_3}
+
+{waypoint|1_4_3_3} #The Crystal Veins
+
+➞ {enter|1_4_5_1} #Daresso's Dream
+    #sub {image|1_4_5_1 y_1|600}
+
+➞ {enter|1_4_5_2} #The Grand Arena
+    #sub Corridor continues → keep moving
+    #sub Arena reached
+    #sub Cross arena directly → next corridor
+    #sub Path splits
+    #sub Take ⬆️ or ⬅️ leading ⬆️
+
+➞ {arena|The Ring of Blades}, kill {kill|Daresso, King of Swords}, take {quest_text|The Eye of Desire}
+
+Get {crafting}
+
+{waypoint|1_4_3_3} #The Crystal Veins
+
+➞ {enter|1_4_4_1} #Kaom's Dream
+    #sub {image|1_4_4_1 y_1|200} {image|1_4_4_1 y_2|200} {image|1_4_4_1 y_3|200} 
+
+➞ {enter|1_4_4_3} #Kaom's Stronghold
+    #sub Follow Bridges
+    #sub {image|1_4_4_3 y_1|200} {image|1_4_4_3 y_2|200}
+    
+
+Get {crafting}
+
+➞ {arena|Caldera of the King}, kill {kill|King Kaom}, take {quest_text|The Eye of Fury}
+
+{portal|use}
+
+{waypoint|1_4_3_3} #The Crystal Veins
+
+Talk to {generic|Lady Dialla}
+
+➞ {enter|1_4_6_1} #The Belly of the Beast Level 1
+    #sub {image|1_4_6_1 y_1|200} {image|1_4_6_1 y_2|200} {image|1_4_6_1 y_3|200}
+
+➞ {enter|1_4_6_2} #The Belly of the Beast Level 2
+    #sub {image|1_4_6_2 y_1|600}
+    
+➞ {arena|The Bowels of the Beast}, kill {kill|Piety, the Abomination}
+
+Talk to {generic|Piety}
+
+Get {crafting}
+
+➞ {enter|1_4_6_3} #The Harvest
+    #sub {image|1_4_6_3 y_1|300}
+    
+Find and kill {kill|Doedre Darktongue}, take {quest_text|Malachai's Lungs}
+
+Find and kill {kill|Maligaro, The Inquisitor}, take {quest_text|Malachai's Heart}
+
+Find and kill {kill|Shavronne of Umbra}, take {quest_text|Malachai's Entrails}
+
+Hand in {quest|a4q5} #Corpus Malachus
+➞ {arena|The Black Core}, kill {kill|Malachai, The Nightmare}
+
+{logout}
+
+Hand in {quest|a4q1} #The Eternal Nightmare
+
+➞ {enter|1_4_7} #The Ascent
+    #sub {image|1_4_7 y_1|300}
+
+Get {crafting}
+
+Activate {quest_text|The Resonator}, use {quest_text|Oriath Portal}`;export{n as default};

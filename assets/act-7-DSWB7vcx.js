@@ -1,0 +1,161 @@
+const n=`#section Act 7
+{waypoint|2_7_town} #The Bridge Encampment
+
+➞ {enter|2_7_1} #The Broken Bridge
+    #sub Follow the road
+    #sub {image|2_7_1 y_1|600}
+
+#ifdef LEAGUE_START
+    Find and take {quest_text|Silver Locket}
+        #sub Follow the road, look for the broken {waypoint}
+#endif
+
+➞ {enter|2_7_2} #The Crossroads
+    #sub Follow the road
+    #sub North ⬆️ of WP: Chamber of Sins
+    #sub South ⬇️ of WP: Fellshrine Ruins
+    #sub {image|2_7_2 y_1|250}
+    
+Get {waypoint_get}
+
+➞ {enter|2_7_3} #The Fellshrine Ruins
+    #sub Go {dir|135}
+    #sub {image|2_7_3 y_1|300}
+    
+➞ {enter|2_7_4} #The Crypt
+    #sub 1st Part: follow Opposite Wall of WP if below Line ⬆️, 
+    #sub or Wall behind WP if above Line ⬇️
+    #sub 2nd Part: open Sarcophagus at Corner Pattern
+    #sub - North/East Variant: walk past Sarcophagus to Trial
+    #sub - South/West Variant: continue Wall to Trial
+    #sub - Container of Sin: follow Edge to Corner, then continue Zone Diagonal
+    #sub {image|2_7_4 y_1|700}
+
+#ifdef LEAGUE_START
+    Complete {trial}
+    Get {crafting}
+#endif
+
+Find {generic|Sarcophagus} to next floor
+
+Find and take {quest_text|Maligaro's Map}
+
+{logout}
+
+{waypoint|2_7_2} #The Crossroads
+    #sub North ⬆️ of WP: Chamber of Sins
+    #sub {image|2_7_2 y_1|250}
+
+➞ {enter|2_7_5_1} #The Chamber of Sins Level 1
+    #sub {image|2_7_5_1 y_1|600}
+    #sub Go {dir|315}
+
+Get {crafting}
+
+Get {waypoint_get}
+
+Activate {quest_text|Map Device} with {quest_text|Maligaro's Map}
+
+➞ {enter|2_7_5_map} #Maligaro's Sanctum
+
+➞ {arena|Maligaro's Workshop}, kill {kill|Maligaro, the Artist}, take {quest_text|Black Venom}
+    #sub Follow edges of the zone and cross bridges in the corners
+    #sub Typically bridges spawn in the opposite diagonal corners
+    
+{logout}
+
+Hand in {quest|a7q2} #Essence of the Artist
+
+#ifdef LEAGUE_START
+    Hand in {quest|a7q5} #The Silver Locket
+#endif
+
+{waypoint|2_7_5_1} #The Chamber of Sins Level 1
+Hand in {quest|a7q3}, take {quest_text|Obsidian Key} #Web of Secrets
+
+➞ {enter|2_7_5_2} #The Chamber of Sins Level 2
+    #sub {image|2_7_5_2 y_1|600}
+    #sub Go in same direction as {waypoint}
+
+#ifdef LEAGUE_START
+    Complete {trial}
+    Get {crafting}
+#endif
+
+Open {generic|Secret Passage} ➞ {enter|2_7_6} #The Den
+    #sub {image|2_7_6 y_1|600}
+
+➞ {enter|2_7_7} #The Ashen Fields
+    #sub Follow the Road
+    #sub {image|2_7_7 y_1|300}
+
+➞ {arena|The Forest Encampment}, kill {kill|Greust, Lord of the Forest}
+    #sub Go {dir|225}
+
+➞ {enter|2_7_8} #The Northern Forest
+    #sub Move South-West ↙️ to West Edge
+    #sub Move North ⬆️ along West Edge
+    #sub If Dread Thicket Entrance found: place Portal and continue
+    #sub {image|2_7_8 y_1|600}
+
+{waypoint|2_7_town} #The Bridge Encampment
+
+Hand in {quest|a7q1} #The Master of a Million Faces
+
+{waypoint|2_7_8} #The Northern Forest
+
+Place {portal|set} at Dread Thicket Entrance
+
+➞ {enter|2_7_10} #The Causeway
+    #sub Move along the West Edge
+    #sub {image|2_7_10 y_1|600}
+
+Get {crafting}
+
+Find and take {quest_text|Kishara's Star}
+
+➞ {enter|2_7_11} #The Vaal City
+    #sub Move North-West ↖️
+    #sub If Wall hit: wrap West ⬅️ then continue North-West ↖️
+    #sub If Wall extends >1 screen ↖️: at opening move East ➡️
+    #sub Walk East / South-East ➡️↘️ to WP
+    #sub {image|2_7_11 y_1|600}
+
+Find {waypoint_get}
+
+{waypoint|2_7_town} #The Bridge Encampment
+
+{portal|use}
+
+➞ {enter|2_7_9} #The Dread Thicket
+
+Find and take 7x{quest_text|Firefly}
+
+Get {crafting}
+
+➞ {arena|Den of Despair}, kill {kill|Gruthkul, Mother of Despair}
+
+{logout}
+
+Hand in {quest|a7q9} #Queen of Despair
+Hand in {quest|a7q6} #Kishara's Star
+
+{waypoint|Labyrinth_Airlock} #Aspirants' Plaza
+{ascend|cruel}
+Get {crafting|2_Labyrinth_boss_3}
+
+{waypoint|2_7_11} #The Vaal City
+
+Hand in {quest|a7q7} #Lighting the Way
+
+➞ {enter|2_7_12_1} #The Temple of Decay Level 1
+    #sub Floor 1: follow Zone path
+    #sub Floor 2: Exit diagonal opposite from Entrance
+    #sub {image|2_7_12_1 y_1|200} {image|2_7_12_1 y_2|200}
+
+➞ {enter|2_7_12_2} #The Temple of Decay Level 2
+    #sub Floor 1: follow Zone path
+
+Get {crafting}
+
+➞ {arena|Arakaali's Web}, kill {kill|Arakaali, Spinner of Shadows}`;export{n as default};

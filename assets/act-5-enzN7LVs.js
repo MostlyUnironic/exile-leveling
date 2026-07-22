@@ -1,0 +1,92 @@
+const n=`#section Act 5
+➞ {enter|1_5_1} #The Slave Pens
+    #sub Always stick to the Left Wall from the Start
+    #sub {image|1_5_1 y_1|600}
+
+Find and kill {kill|Overseer Krow}
+    #sub Go {dir|180} until you find the hanged Kauri
+    #sub Loop around clockwise to go {dir|270}
+
+➞ {enter|1_5_town} #Overseer's Tower
+
+Hand in {quest|a5q1b} #Return to Oriath
+
+➞ {enter|1_5_2} #The Control Blocks
+    #sub {image|1_5_2 y_1|500}
+
+Find and take {quest_text|Miasmeter}
+    #sub Go {dir|270} as much as possible
+
+Find and kill {kill|Justicar Casticus}, take {quest_text|Eyes of Zeal}
+    #sub Go {dir|45} from {quest_text|Miasmeter}
+
+➞ {enter|1_5_3} #Oriath Square
+    #sub Move North-West ↖️ past Bridge
+    #sub At next Crosssection, move West ⬅️
+    #sub Continue North-West ↖️ to Door
+
+➞ {enter|1_5_4} #The Templar Courts
+    #sub Follow Inner Wall East ➡️ to Courtroom
+    #sub Continue East ➡️ to level with Entrance
+    #sub Move North ⬆️ to Exit to Chamber of Innocence
+    #sub {image|1_5_4 y_1|300}
+
+➞ {enter|1_5_5} #The Chamber of Innocence
+    #sub Stick to Outer Wall of Zone
+    #sub Farm Level: 40-42
+    #sub {image|1_5_5 y_1|400}
+    #sub {image|1_5_5 y_2|400}
+  
+Get {crafting}
+
+➞ {arena|Sanctum of Innocence}, kill {kill|High Templar Avarius}
+    #sub Go {dir|315} counter-clockwise spiral
+
+➞ {enter|1_5_4b} #The Torched Courts
+    #sub {image|1_5_4b y_1|300}
+
+➞ {enter|1_5_3b} #The Ruined Square
+    #sub Bloodfountain West Passage ⬅️ from WP
+    #sub Rooftop Entrance North-East ↗️ of Bloodfountain
+    #sub Reliquary Entrance South ⬇️ of Bloodfountain
+    #sub {image|1_5_3b y_1|300}
+
+Get {waypoint_get}
+    #sub Go {dir|315}
+
+➞ {enter|1_5_6} #The Ossuary
+    #sub {image|1_5_6 y_1|500}
+
+Find and take {quest_text|Sign of Purity}
+
+Get {crafting}
+
+{logout}
+
+{waypoint|1_5_3b} #The Ruined Square
+#sub {image|1_5_3b y_1|300}
+
+Place {portal|set} at the Middle of Big Square, next to Blood Fountain
+
+➞ {enter|1_5_7} #The Reliquary
+    #sub {image|1_5_7 y_1|300}
+
+Find 3x{quest_text|Kitava's Torment}, search in the corners of the map
+
+Get {crafting}
+
+{waypoint|1_5_town}
+
+Hand in {quest|a5q2} #The Key to Freedom
+Hand in {quest|a5q3} #In Service to Science
+Hand in {quest|a5q4} #Death to Purity
+Hand in {quest|a5q7} #Kitava's Torments 
+
+{portal|use}
+
+➞ {enter|1_5_8} #The Cathedral Rooftop
+    #sub Go {dir|315}
+
+➞ {arena|Cathedral Apex}, kill {kill|Kitava, the Insatiable}
+
+Talk to {generic|Lilly Roth}, Sail to Wraeclast`;export{n as default};
